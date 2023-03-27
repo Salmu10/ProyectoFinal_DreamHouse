@@ -25,8 +25,8 @@ export default function Home() {
                 <h1>Find your property in Spain</h1>
             </div>
             <Search apply_filters={apply_filters}/>
+            <h1>Houses Map</h1>
             <div className='maps'>
-                <h1>Houses Map</h1>
                 <HousesMap houses={houses} setShow={setShow}/>
             </div>
         </div>

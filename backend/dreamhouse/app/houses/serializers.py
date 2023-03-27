@@ -85,6 +85,7 @@ class HouseSerializer(serializers.ModelSerializer):
         category_filters = {}
         # category_id = 0
 
+        map = filters_context.get('map', False)
         category = filters_context.get('category', '')
         min_price = filters_context.get('min_price', '')
         rooms = filters_context.get('rooms', '')
@@ -125,7 +126,6 @@ class HouseSerializer(serializers.ModelSerializer):
         if (parking == 'true'):
             services_filters['parking'] = True
 
-
         #Filtro de Cuartos de Baño
         if (category == ''):
             category_filters['name__contains'] = ''
@@ -147,12 +147,14 @@ class HouseSerializer(serializers.ModelSerializer):
         
         for house in houses_id:
             house_list.append(house.id)
-        
-        houses = House.objects.filter(pk__in=house_list, category__in=categories)[offset:offset+3]
+
+        #Filtro de vista
+        if (map == 'true'):
+            houses = House.objects.filter(pk__in=house_list, category__in=categories)
+        else: 
+            houses = House.objects.filter(pk__in=house_list, category__in=categories)[offset:offset+3]
 
         total_houses = House.objects.filter(pk__in=house_list, category__in=categories)
-
-        print(len(total_houses))
 
         houses_res = {'houses': houses, 'total_houses': len(total_houses)}
 

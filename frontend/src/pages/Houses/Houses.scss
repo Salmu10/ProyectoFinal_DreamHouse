@@ -1,0 +1,69 @@
+.houses_container {
+    padding: 20px;
+    width: 100%;
+    .title {
+        text-align: center;
+        padding: 20px;
+        h1 {
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #333;
+        }
+    }
+    .stations-list-container {
+        display: block;
+        width: 100%;
+    }
+
+    .pagination {
+        text-align: center;
+        display: flex;
+        list-style: none;
+        border-radius: 0.25rem;
+    }
+    
+    .pagination nav {
+        display: block;
+        margin: auto;
+        margin-top: 4%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+
+    .houses_container {
+        min-height: 84vh;
+        .title {
+            h1 {
+                font-size: 25px;
+            }
+        }
+    }
+
+}
+
+@media screen and (min-width: 577px) {
+
+    .houses_container {
+        min-height: 83vh;
+        .title {
+            h1 {
+                font-size: 30px;
+            }
+        }
+    }
+
+}
+
+@media screen and (min-width: 992px) {
+
+    .houses_container {
+        min-height: 81vh;
+        .title {
+            h1 {
+                font-size: 35px;
+            }
+        }
+    }
+
+}

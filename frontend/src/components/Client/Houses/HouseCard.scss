@@ -1,0 +1,81 @@
+.stations_cards-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: auto;
+  z-index: 0;
+  gap: 30px;
+  .card_title {
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-bottom: -15px;
+    color: #333;
+    p {
+      margin: 0;
+    }
+  }
+  .card {
+    border-radius: 40px;
+    box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+    cursor: pointer;
+    transition: 0.4s;
+    .card_image {
+      width: inherit;
+      height: inherit;
+      border-radius: 40px;
+      img {
+        width: inherit;
+        height: inherit;
+        border-radius: 40px;
+        object-fit: cover;
+      }
+    }
+    &:hover {
+      transform: scale(0.9, 0.9);
+      box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
+        -5px -5px 30px 15px rgba(0,0,0,0.22);
+    }
+  }
+}
+  
+@media screen and (max-width: 576px) {
+  .stations_cards-list {
+    flex-direction: column;
+    .card_title {
+      font-size: 22px;
+    }
+    .card {
+      margin: 30px auto;
+      width: 320px;
+      height: 192px;
+    }
+  }
+}
+
+@media screen and (min-width: 577px) {
+  .stations_cards-list {
+    .card_title {
+      font-size: 25px;
+    }
+    .card {
+      margin: 30px auto;
+      width: 500px;
+      height: 300px;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .stations_cards-list {
+    .card_title {
+      font-size: 28px;
+    }
+    .card {
+      margin: 30px auto;
+      width: 500px;
+      height: 300px;
+    }
+  }
+}

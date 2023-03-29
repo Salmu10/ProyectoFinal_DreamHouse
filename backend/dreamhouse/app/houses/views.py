@@ -73,6 +73,11 @@ class HouseView(viewsets.GenericViewSet):
         houses_serializer = HouseSerializer(houses, many=True)
         return Response(houses_serializer.data)
     
+    def getOneHouse(self, request, id):
+        house = House.objects.get(pk=id)
+        house_serializer = HouseSerializer(house)
+        return Response(house_serializer.data)
+    
     def getHousesFiltered(self, request):
         filters = {x:request.GET.get(x) for x in request.GET.keys()}
         houses = HouseSerializer.getHousesFiltered(filters_context=filters)
@@ -80,11 +85,6 @@ class HouseView(viewsets.GenericViewSet):
         context = {'houses': houses_serializer.data, 'total_houses': houses['total_houses']}
         return Response(context)
         # return Response(houses_serializer.data)
-    
-    def getOneHouse(self, request, id):
-        house = House.objects.get(pk=id)
-        house_serializer = HouseSerializer(house)
-        return Response(house_serializer.data)
     
     def post(self, request):
         username = request.user
@@ -108,3 +108,10 @@ class HouseView(viewsets.GenericViewSet):
         house = House.objects.get(pk=id)
         house.delete()
         return Response({'data': 'House deleted successfully'})
+    
+class HouseServicesView(viewsets.GenericViewSet):
+        
+    def getOneHouseServices(self, request, id):
+        house_Services = HouseServices.objects.get(house_id=id)
+        house_services_serializer = HouseServicesSerializer(house_Services)
+        return Response(house_services_serializer.data)

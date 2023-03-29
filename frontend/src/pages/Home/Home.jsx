@@ -19,8 +19,8 @@ export default function Home() {
     }
 
     return (
-        houses.length === 0 ? <SpinnerLoading/>
-        :<div className="home_container">
+        houses.length === 0 ? <SpinnerLoading/> :
+        <div className="home_container">
             <div className="title">
                 <h1>Find your property in Spain</h1>
             </div>

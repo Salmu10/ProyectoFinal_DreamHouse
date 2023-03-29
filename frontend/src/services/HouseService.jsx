@@ -10,6 +10,10 @@ const HouseService = {
         return api().get(`house/${id}`);
     },
 
+    getOneHouseServices(id) {
+        return api().get(`house_services/${id}`);
+    },
+
     createHouse(data, data_services) {
         return api().post("/house", { 'house': data, 'house_services': data_services });
     },

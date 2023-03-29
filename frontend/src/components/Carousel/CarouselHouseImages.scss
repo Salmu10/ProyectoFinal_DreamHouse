@@ -1,0 +1,33 @@
+// @import 'swiper/css';
+// @import 'swiper/css/navigation';
+// @import 'swiper/css/pagination';
+// @import 'swiper/css/scrollbar';
+
+// .carusel_item {
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: center;
+//     margin-bottom: 10%;
+
+//     img {
+//         max-width: 80%;
+//         height: auto;
+//     }
+// }
+
+@media only screen and (max-width: 760px ) {
+
+    .img1 {
+      background-size: cover;
+      padding: 40%;
+      height: 100%;
+    }
+  }
+  
+  @media only screen and (min-width: 1200px ) {
+  
+    .img1 {
+      background-size: cover;
+      padding: 20%;
+    }
+  }

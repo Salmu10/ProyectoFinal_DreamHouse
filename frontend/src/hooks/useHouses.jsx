@@ -6,7 +6,8 @@ import { toast } from "react-toastify";
 export function useHouses() {
     const {houses, setHouses} = useContext(HousesContext);
     const [oneHouse, setOneHouse] = useState({});
-    const [housesFiltered, setHousesFiltered] = useState([]);
+    const [oneHouseServices, setOneHouseServices] = useState({});
+    // const [housesFiltered, setHousesFiltered] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [isCorrect, setIsCorrect] = useState(false);
 
@@ -14,7 +15,11 @@ export function useHouses() {
         HouseService.getOneHouse(id)
             .then(({data}) => {
                 setOneHouse(data);
-                console.log(data);
+                HouseService.getOneHouseServices(data.id)
+                    .then(({data}) => {
+                        setOneHouseServices(data);
+                    })
+                    .catch(e => console.error(e));
             })
             .catch(e => console.error(e));
     }, [oneHouse]);
@@ -34,6 +39,6 @@ export function useHouses() {
 
 
 
-    return { isCorrect, houses, setHouses, oneHouse, setOneHouse, totalPages, setTotalPages, getOneHouse, getHousesFiltered }
+    return { isCorrect, houses, setHouses, oneHouse, setOneHouse, oneHouseServices, setOneHouseServices, totalPages, setTotalPages, getOneHouse, getHousesFiltered }
 
 }

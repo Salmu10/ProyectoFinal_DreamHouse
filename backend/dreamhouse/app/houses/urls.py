@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import CategoryView
 from .views import HouseView
-# from .views import HouseServicesView
+from .views import HouseServicesView
 
 urlpatterns = [
     # Categories
@@ -13,12 +13,12 @@ urlpatterns = [
 
     # Houses
     path('houses', HouseView.as_view({'get': 'getHouses'})),
-    path('houses_filtered', HouseView.as_view({'get': 'getHousesFiltered'})),
     path('house/<int:id>', HouseView.as_view({'get': 'getOneHouse'})),
+    path('houses_filtered', HouseView.as_view({'get': 'getHousesFiltered'})),
     path('house', HouseView.as_view({'post': 'post'})),
     path('house/<int:id>', HouseView.as_view({'put': 'put'})),
     path('house/<int:id>', HouseView.as_view({'delete': 'delete'})),
 
     # House Services
-
+    path('house_services/<int:id>', HouseServicesView.as_view({'get': 'getOneHouseServices'})),
 ]

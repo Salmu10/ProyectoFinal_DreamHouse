@@ -31,7 +31,7 @@ const Register = React.lazy(() => import( "./pages/Login/Register"));
 // const StationsList = React.lazy(() => import('./pages/Admin/Station/StationsList'));
 // const StationsAdd = React.lazy(() => import('./pages/Admin/Station/StationsAdd'));
 // const StationsUpdate = React.lazy(() => import('./pages/Admin/Station/StationsUpdate'));
-// const StationDetails = React.lazy(() => import('./pages/Client/StationDetails'));
+const HouseDetails = React.lazy(() => import('./pages/Client/HouseDetails'));
 
 // const ScootersList = React.lazy(() => import('./pages/Admin/Scooter/ScootersList'));
 // const ScootersAdd = React.lazy(() => import('./pages/Admin/Scooter/ScootersAdd'));
@@ -70,6 +70,7 @@ function App() {
 
                     <Route element={<AuthGuard/>}>
                       <Route path="/profile/:id" element={<Profile/>}/>
+                      <Route path="/house/:id" element={<HouseDetails/>}/>
                     </Route>
                   </Routes>
                 <Footer/>

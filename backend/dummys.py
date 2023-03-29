@@ -11,7 +11,7 @@ categories_image = ["for_sale.jpg", "rent.jpg", "vacational_rent.jpg"]
 
 usernames = ["salmu10", "salvamu10", "salva"]
 emails = ["salmu10@gmail.com", "salvamu10@gmail.com", "salva@gmail.com"]
-passwords = ["123456789"]
+passwords = ["123456"]
 booleans = [1, 0]
 
 house_locations = ["Ontinyent", "Benidorm", "Barcelona", "Madrid", "Bilbao", "Sevilla"]

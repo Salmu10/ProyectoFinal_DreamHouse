@@ -14,6 +14,7 @@ export function useHouses() {
         HouseService.getOneHouse(id)
             .then(({data}) => {
                 setOneHouse(data);
+                console.log(data);
             })
             .catch(e => console.error(e));
     }, [oneHouse]);

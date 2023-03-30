@@ -13,6 +13,7 @@ numpy = "*"
 pyjwt = "==v1.7.1"
 django-environ = "*"
 pymysql = "*"
+pillow = "*"
 
 [dev-packages]
 

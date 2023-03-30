@@ -28,9 +28,9 @@ const Dashboard = React.lazy(() => import( "./pages/Admin/Dashboard"));
 const Login = React.lazy(() => import( "./pages/Login/Login"));
 const Register = React.lazy(() => import( "./pages/Login/Register"));
 
-// const StationsList = React.lazy(() => import('./pages/Admin/Station/StationsList'));
-// const StationsAdd = React.lazy(() => import('./pages/Admin/Station/StationsAdd'));
-// const StationsUpdate = React.lazy(() => import('./pages/Admin/Station/StationsUpdate'));
+const HousesList = React.lazy(() => import('./pages/Admin/House/HousesList'));
+const HousesAdd = React.lazy(() => import('./pages/Admin/House/HousesAdd'));
+const HousesUpdate = React.lazy(() => import('./pages/Admin/House/HousesUpdate'));
 const HouseDetails = React.lazy(() => import('./pages/Client/HouseDetails'));
 
 // const ScootersList = React.lazy(() => import('./pages/Admin/Scooter/ScootersList'));
@@ -66,6 +66,9 @@ function App() {
 
                     <Route element={<AdminGuard/>}>
                       <Route path="/dashboard" element={<Dashboard/>}/>
+                      <Route path="/dashboard/houses" element={<HousesList/>}/>
+                      <Route path="/dashboard/houses/add" element={<HousesAdd/>}/>
+                      <Route path="/dashboard/houses/update/:id" element={<HousesUpdate/>}/>
                     </Route>
 
                     <Route element={<AuthGuard/>}>

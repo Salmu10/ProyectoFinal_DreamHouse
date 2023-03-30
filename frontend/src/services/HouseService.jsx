@@ -14,6 +14,10 @@ const HouseService = {
         return api().get(`house_services/${id}`);
     },
 
+    getOneHouseImages(id) {
+        return api().get(`house_images/${id}`);
+    },
+
     createHouse(data, data_services) {
         return api().post("/house", { 'house': data, 'house_services': data_services });
     },

@@ -1,0 +1,68 @@
+.house_container {
+    padding: 20px;
+    width: 100%;
+    .title {
+        text-align: center;
+        padding: 20px;
+        h1 {
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #333;
+        }
+    }
+    .house_info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 20px;
+        .carousel {
+            display: block;
+            width: 50%;
+            margin: auto;
+        }
+        .house_bio {
+            display: block;
+            width: 50%;
+            margin: auto;
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+
+    .house_container {
+        min-height: 83vh;
+        .title {
+            h1 {
+                font-size: 25px;
+            }
+        }
+    }
+
+}
+
+@media screen and (min-width: 577px) {
+
+    .house_container {
+        min-height: 81vh;
+        .title {
+            h1 {
+                font-size: 30px;
+            }
+        }
+    }
+
+}
+
+@media screen and (min-width: 992px) {
+
+    .house_container {
+        min-height: 81vh;
+        .title {
+            h1 {
+                font-size: 35px;
+            }
+        }
+    }
+
+}

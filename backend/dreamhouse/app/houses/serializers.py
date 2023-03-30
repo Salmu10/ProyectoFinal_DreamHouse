@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Category
 from .models import House
 from .models import HouseServices
+from .models import HouseImages
 from dreamhouse.app.users.models import User
 from random import randint
 from django.db.models import Q
@@ -39,7 +40,7 @@ class HouseSerializer(serializers.ModelSerializer):
             "longitude": instance.longitude,
         }
     
-    def create(user, house_context, services_context):
+    def create(user, house_context, services_context, images_context):
         username = user['username']
         category_name = house_context['category']
         category = Category.objects.get(name=category_name)
@@ -73,6 +74,9 @@ class HouseSerializer(serializers.ModelSerializer):
 
         if house_services is None:
             raise serializers.ValidationError('Create house services error')
+
+        for image in images_context:
+            HouseImages.objects.create(image=image, house_id=house.id)
 
         return house.id
     

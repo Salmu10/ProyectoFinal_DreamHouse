@@ -9,6 +9,7 @@ from .models import House
 from .serializers import HouseSerializer
 from .models import HouseServices
 from .serializers import HouseServicesSerializer
+from .models import HouseImages
 from rest_framework.permissions import (AllowAny, IsAuthenticated)
 from dreamhouse.app.core.permissions import IsAdmin
 
@@ -90,7 +91,8 @@ class HouseView(viewsets.GenericViewSet):
         username = request.user
         house_data = request.data.get('house')
         house_services = request.data.get('house_services')
-        serializer = HouseSerializer.create(user=username, house_context=house_data, services_context=house_services)
+        house_images = request.data.get('house_images')
+        serializer = HouseSerializer.create(user=username, house_context=house_data, services_context=house_services, images_context=house_images)
         house = House.objects.get(pk=serializer)
         house_serializer = HouseSerializer(house)
         return Response(house_serializer.data)
@@ -99,6 +101,9 @@ class HouseView(viewsets.GenericViewSet):
     def put(self, request, id):
         house = House.objects.get(pk=id)
         data = request.data.get('house')
+        if request.FILES:
+            for image in request.FILES.getlist('house_images'):
+                HouseImages.objects.filter(house_id=id).update(image=image)
         serializer = HouseSerializer(instance=house, data=data, partial=True)
         if (serializer.is_valid(raise_exception=True)):
             serializer.save()
@@ -115,3 +120,12 @@ class HouseServicesView(viewsets.GenericViewSet):
         house_Services = HouseServices.objects.get(house_id=id)
         house_services_serializer = HouseServicesSerializer(house_Services)
         return Response(house_services_serializer.data)
+    
+class HouseImagesView(viewsets.GenericViewSet):
+        
+    def getOneHouseImages(self, request, id):
+        House_images = HouseImages.objects.filter(house_id=id)
+        data = [{'id': image.id, 'image_url': image.image} for image in House_images]
+        print(data)
+        return Response('Hola')
+        # return JsonResponse(data, safe=False)

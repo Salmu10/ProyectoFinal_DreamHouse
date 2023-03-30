@@ -2,6 +2,7 @@ from django.urls import path
 from .views import CategoryView
 from .views import HouseView
 from .views import HouseServicesView
+from .views import HouseImagesView
 
 urlpatterns = [
     # Categories
@@ -21,4 +22,7 @@ urlpatterns = [
 
     # House Services
     path('house_services/<int:id>', HouseServicesView.as_view({'get': 'getOneHouseServices'})),
+
+    # House Images
+    path('house_images/<int:id>', HouseImagesView.as_view({'get': 'getOneHouseImages'})),
 ]

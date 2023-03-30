@@ -33,3 +33,10 @@ class HouseServices(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+class HouseImages(models.Model):
+    house = models.ForeignKey(House, on_delete=models.CASCADE, null=False, related_name="house_images")
+    image = models.ImageField(upload_to='images/')
+
+    def __str__(self):
+        return str(self.id)

@@ -1,43 +1,34 @@
-import React from "react";
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-// import { useStations } from "../../hooks/useStations";
-// import CaruselItem from "./caruselItem";
+import React, { useEffect } from 'react';
 import './CarouselHouseImages.scss';
-
+import { useHouses } from "../../hooks/useHouses";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
-export default function CarouselHouseImages({ house = [] }) {
+export default function CarouselHouseImages({ house }) {
 
-    // const data = house.map(item => {
-    //     return { img: item.image, id: item.id };
-    // })
+    const { getOneHouseImages } = useHouses();
+
+    useEffect(() => {
+        if (house.id != undefined) {
+            getOneHouseImages(house.id);
+        }
+    }, [house]);
 
     const imgs = [
-        "https://www.drivespark.com/img/2018/02/rent-a-bike-at-most-metro-stations-in-bangalore2-1519188283.jpg",
-        "https://ychef.files.bbci.co.uk/live/624x351/p014kc76.jpg",
-        "https://live.staticflickr.com/65535/48880444927_64a3d3c655_b.jpg"
+        "https://cdn.pixabay.com/photo/2017/06/12/19/02/cat-2396473__480.jpg",
+        "https://cdn.pixabay.com/photo/2016/10/16/10/00/cat-1744750__480.jpg",
+        "https://cdn.pixabay.com/photo/2015/06/03/13/13/cats-796437__480.jpg",
+        "https://cdn.pixabay.com/photo/2017/02/26/14/12/cat-2100306__480.jpg"
     ]
-
-    // const carusel_items = data.map((item, index) => <SwiperSlide key={index}><CaruselItem data={item} /></SwiperSlide> )
 
     return (
         <div className="carousel">
             <Carousel className="carouselDiv" showArrows={true} autoPlay={true} showThumbs={false}>
                 {imgs.map((URL, index) => (
-                    <div className="img1" key={index} style={{backgroundImage: 'url("'+URL+'")'}}/> 
+                    <img key={index} src={URL}/>
+                    // <div className="img1" key={index} style={{backgroundImage: 'url("'+URL+'")'}}/>
                 ))}
             </Carousel>
-
-            {/* <Swiper
-                modules={[Navigation, Pagination, Scrollbar, A11y]}
-                spaceBetween={50}
-                navigation
-                pagination={{ clickable: true }}
-                scrollbar={{ draggable: true }}>
-                {carusel_items}
-            </Swiper> */}
         </div>
     )
 }

@@ -1,4 +1,4 @@
-// import './StationCard.scss';
+import './HouseDetails.scss';
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -23,12 +23,17 @@ export default function HouseDetails ({ }) {
             <div className="title">
                 <h1>House details</h1>
             </div>
-            <CarouselHouseImages house={oneHouse}/>
-            <p>{oneHouse.id}</p>
-            <p>{oneHouse.location}</p>
-            <p>{oneHouse.country}</p>
-            <p>{oneHouseServices.rooms}</p>
-            <p>{oneHouseServices.bathrooms}</p>
+            <div className="house_info">
+                <CarouselHouseImages house={oneHouse}/>
+                <div className="house_bio">
+                    <p>{oneHouse.id}</p>
+                    <p>{oneHouse.location}</p>
+                    <p>{oneHouse.country}</p>
+                    <p>{oneHouseServices.rooms}</p>
+                    <p>{oneHouseServices.bathrooms}</p>
+                </div>
+            </div>
+
             <div className="house_map">
                 <HouseMap house={oneHouse}/>
             </div>

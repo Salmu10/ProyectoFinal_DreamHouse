@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 
 from rest_framework.response import Response
@@ -101,13 +102,20 @@ class HouseView(viewsets.GenericViewSet):
     def put(self, request, id):
         house = House.objects.get(pk=id)
         data = request.data.get('house')
-        if request.FILES:
-            for image in request.FILES.getlist('house_images'):
-                HouseImages.objects.filter(house_id=id).update(image=image)
+        house_services = request.data.get('house_services')
         serializer = HouseSerializer(instance=house, data=data, partial=True)
+        HouseServicesSerializer(instance=house, data=house_services, partial=True)
         if (serializer.is_valid(raise_exception=True)):
             serializer.save()
         return Response(serializer.data)
+        # return Response('Hola')
+    
+    def putImages(self, request, id):
+        print(request.FILES)
+        if request.FILES:
+            for image in request.FILES.getlist('imagenes'):
+                HouseImages.objects.filter(house_id=id).update(image=image)
+        return Response('hola')
     
     def delete(self, request, id):
         house = House.objects.get(pk=id)
@@ -128,4 +136,5 @@ class HouseImagesView(viewsets.GenericViewSet):
         data = [{'id': image.id, 'image_url': image.image} for image in House_images]
         print(data)
         return Response('Hola')
+        # return Response(data)
         # return JsonResponse(data, safe=False)

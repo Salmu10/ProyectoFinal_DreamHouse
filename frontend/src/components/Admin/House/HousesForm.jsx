@@ -1,5 +1,5 @@
 import './HousesForm.scss';
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useForm } from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ import * as Yup from 'yup';
 export default function HousesForm({house= {id: '', country: '', location: '', image: '', price: '', address: '', latitude: '', longitude: '', category: ''}, 
 houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '', house_id: ''}, houseImages, form_type, sendData}) {
     const navigate = useNavigate();
+    const [archivos, setArchivos] = useState([]);
 
     const validators = Yup.object().shape({
         country: Yup.string().required('*Country is required').min(3).max(50),
@@ -38,13 +39,7 @@ houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '
             setValue('price', house.price);
             setValue('latitude', house.latitude);
             setValue('longitude', house.longitude);
-            if (house.category == 1) {
-                setValue('category', 'for_sale');
-            } else if (house.category == 2) {
-                setValue('category', 'rent');
-            } else if (house.category == 3) {
-                setValue('category', 'vacational_rent');
-            }
+            setValue('category', house.category);
         }
         if (houseServices.id !== '') {
             setValue('rooms', houseServices.rooms);
@@ -55,8 +50,16 @@ houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '
         }
     }, [house, houseServices]);
 
+    const subirArchivos = e => {
+        setArchivos(e);
+    };
+    
     const send_data = data => {
-        sendData(data);
+        const formData = new FormData();
+        for (let i = 0; i < archivos.length; i++) {
+            formData.append('imagenes', archivos[i]);
+        }
+        sendData(data, formData);
     };
 
     const redirects = {
@@ -69,7 +72,7 @@ houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '
     // console.log(houseImages);
 
     return (
-        <form className='house_form' onSubmit={handleSubmit(send_data)}>
+        <form className='house_form' onSubmit={handleSubmit(send_data)} encType="multipart/form-data">
             <div className="house_box">
                 <div className="house_attr">
                     <div className='country_box'>
@@ -111,9 +114,9 @@ houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '
                         <label htmlFor='category' className='etiqueta'>Category:</label>
                         <select id='category' name="category" {...register('category')} defaultValue="">
                             <option value="" disabled>Select</option>
-                            <option value="for_sale">For sale</option>
-                            <option value="rent">Rent</option>
-                            <option value="vacational_rent">Vacational rent</option>
+                            <option value="1">For sale</option>
+                            <option value="2">Rent</option>
+                            <option value="3">Vacational rent</option>
                         </select><br/>
                         <span className="error">{errors.category?.message}</span>
                     </div>
@@ -148,7 +151,7 @@ houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '
                 <div className="house_images">
                     <div className='images_box'>
                         <label htmlFor='images' className='etiqueta'>Image:</label>
-                        <input id='images' name="images" type="file" {...register('house_images')} multiple/><br/>
+                        <input id='images' name="images" type="file" {...register('house_images')} multiple onChange={(e) => subirArchivos(e.target.files)}/><br/>
                     </div>
                 </div>
             </div>

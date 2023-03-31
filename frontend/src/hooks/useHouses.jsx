@@ -77,6 +77,75 @@ export function useHouses() {
         //     });
     }, []);
 
+    const updateHouse = useCallback((id, data, formData) => {
+        let house_data = {
+            image: data.image,
+            price: data.price,
+            country: data.country,
+            location: data.location,
+            address: data.address,
+            latitude: data.latitude,
+            longitude: data.longitude,
+            category: data.category
+        }
+
+        let services_data = {
+            rooms: data.rooms,
+            bathrooms: data.bathrooms,
+            pool: data.pool,
+            wifi: data.wifi,
+            parking: data.parking
+        }
+
+        HouseService.updateHouseImages(id, formData)
+            .then(({ data, status }) => {
+                console.log(data);
+                console.log(status);
+                // toast.success('House updated successfully');
+                // setIsCorrect(true);
+                // setTimeout(() => { setIsCorrect(false); }, 1000);
+            })
+            .catch(e => {
+                console.error(e);
+                toast.error('Update house error');
+            });
+
+        // HouseService.updateHouse(id, house_data, services_data)
+        //     .then(({ data, status }) => {
+        //         console.log(data);
+        //         console.log(status);
+        //         if (status === 200) {
+        //             let old_houses = [...houses];
+        //             const index = old_houses.findIndex(house => house.id === id);
+        //             if (index !== -1) {
+        //                 old_houses[index] = data;
+        //                 setHouses(old_houses);
+        //             }
+        //             HouseService.updateHouseImages(id, formData)
+        //                 .then(({ data, status }) => {
+        //                     console.log(data);
+        //                     console.log(status);
+        //                     // toast.success('House updated successfully');
+        //                     // setIsCorrect(true);
+        //                     // setTimeout(() => { setIsCorrect(false); }, 1000);
+        //                 })
+        //                 .catch(e => {
+        //                     console.error(e);
+        //                     toast.error('Update house error');
+        //                 });
+        //             // toast.success('House updated successfully');
+        //             // setIsCorrect(true);
+        //             // setTimeout(() => { setIsCorrect(false); }, 1000);
+        //         }
+        //     })
+        //     .catch(e => {
+        //         console.error(e);
+        //         toast.error('Update house error');
+        //     });
+        // setIsCorrect(true);
+        // setTimeout(() => { setIsCorrect(false); }, 1000);
+    }, []);
+
     const deleteHouse = (id) => {
         console.log(id);
         // StationService.deleteStation(slug)
@@ -91,6 +160,6 @@ export function useHouses() {
 
 
     return { isCorrect, houses, setHouses, oneHouse, setOneHouse, oneHouseServices, setOneHouseServices, oneHouseImages , setOneHouseImages, 
-        totalPages, setTotalPages, getOneHouse, getHousesFiltered, getOneHouseImages, addHouse, deleteHouse }
+        totalPages, setTotalPages, getOneHouse, getHousesFiltered, getOneHouseImages, addHouse, updateHouse, deleteHouse }
 
 }

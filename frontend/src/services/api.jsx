@@ -13,6 +13,7 @@ const Axios = () => {
             baseURL: secrets.URL_DRF,
             headers: {
                 "Content-type": "application/json",
+                "Content-Type": "multipart/form-data",
                 "Authorization": `Bearer ${JwtService.getToken()}`
             }
         });
@@ -21,6 +22,7 @@ const Axios = () => {
             baseURL: secrets.URL_DRF,
             headers: {
                 "Content-type": "application/json",
+                "Content-Type": "multipart/form-data",
                 "Authorization": `Bearer ${localStorage.getItem('ref_token')}`
             }
         });
@@ -29,6 +31,7 @@ const Axios = () => {
             baseURL: secrets.URL_DRF,
             headers: {
                 "Content-type": "application/json",
+                "Content-Type": "multipart/form-data",
             }
         });
     }

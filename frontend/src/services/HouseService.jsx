@@ -22,8 +22,13 @@ const HouseService = {
         return api().post("/house", { 'house': data, 'house_services': data_services });
     },
 
-    updateHouse(id, data, data_services) {
-        return api().put(`house/${id}`, { 'house': data, 'house_services': data_services });
+    updateHouse(id, house_data, services_data) {
+        return api().put(`house/${id}`, { 'house': house_data, 'house_services': services_data } );
+        // return api().put(`house/${id}`, formData);
+    },
+
+    updateHouseImages(id, formData) {
+        return api().put(`house_setimages/${id}`, formData);
     },
 
     deleteHouse(id) {

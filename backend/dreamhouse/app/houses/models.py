@@ -12,7 +12,7 @@ class Category(models.Model):
 class House(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=False, related_name="category")
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
-    image = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='main_image')
     price = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
     location = models.CharField(max_length=100)

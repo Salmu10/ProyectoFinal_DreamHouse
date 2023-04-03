@@ -40,9 +40,9 @@ class HouseSerializer(serializers.ModelSerializer):
             "longitude": instance.longitude,
         }
     
-    def create(user, house_context, services_context):
+    def create(user, data_context, main_image, images_context):
         username = user
-        category_name = house_context['category']
+        category_name = data_context['category']
         category = Category.objects.get(name=category_name)
 
         user = User.objects.get(username=username)
@@ -56,13 +56,13 @@ class HouseSerializer(serializers.ModelSerializer):
         house = House.objects.create(
                     category=category,
                     user_id=user.id,
-                    image=house_context['image'], 
-                    price=house_context['price'], 
-                    country=house_context['country'],
-                    location=house_context['location'],
-                    address=house_context['address'],
-                    latitude=house_context['latitude'],
-                    longitude=house_context['longitude']
+                    image=main_image, 
+                    price=data_context['price'], 
+                    country=data_context['country'],
+                    location=data_context['location'],
+                    address=data_context['address'],
+                    latitude=data_context['latitude'],
+                    longitude=data_context['longitude']
                 )
         
         if house is None:
@@ -70,12 +70,72 @@ class HouseSerializer(serializers.ModelSerializer):
         
         house.save()
         
-        house_services = HouseServicesSerializer.create(context=services_context, house_id=house)
+        house_services = HouseServicesSerializer.create(context=data_context, house_id=house)
 
         if house_services is None:
             raise serializers.ValidationError('Create house services error')
+        
+        if images_context:
+            for image in images_context:
+                HouseImages.objects.create(image=image, house_id=house.id)
 
         return house.id
+
+    def update(house_id, data_context, main_image, images_context):
+
+        category_name = data_context['category']
+        category = Category.objects.get(name=category_name)
+
+        if category is None:
+            raise serializers.ValidationError('Category not found')
+
+        House.objects.filter(pk=house_id).update(
+            category=category,
+            price=data_context['price'], 
+            country=data_context['country'],
+            location=data_context['location'],
+            address=data_context['address'],
+            latitude=data_context['latitude'],
+            longitude=data_context['longitude']
+        )
+
+        if (data_context['pool'] == 'true'):
+            pool_val = True
+        else :
+            pool_val = False
+
+        if (data_context['wifi'] == 'true'):
+            wifi_val = True
+        else :
+            wifi_val = False
+        
+        if (data_context['parking'] == 'true'):
+            parking_val = True
+        else :
+            parking_val = False
+
+        HouseServices.objects.filter(pk=house_id).update(
+            rooms=data_context['rooms'], 
+            bathrooms=data_context['bathrooms'], 
+            pool=pool_val,
+            wifi=wifi_val,
+            parking=parking_val
+        )
+
+        if main_image:
+            House.objects.filter(pk=house_id).update(
+                image=main_image
+            )
+
+        # if images_context:
+        #     for image in images_context:
+        #         HouseImages.objects.delete(house_id=house)
+        #         # HouseImages.objects.filter(house_id=id).update(image=image)
+        #         HouseImages.objects.create(image=image, house_id=house)
+
+        house_res = House.objects.get(pk=house_id)
+
+        return house_res.id
     
     def getHousesFiltered(filters_context):
 
@@ -180,13 +240,28 @@ class HouseServicesSerializer(serializers.ModelSerializer):
 
     def create(context, house_id):
 
+        if (context['pool'] == 'true'):
+            pool_val = True
+        else :
+            pool_val = False
+
+        if (context['wifi'] == 'true'):
+            wifi_val = True
+        else :
+            wifi_val = False
+        
+        if (context['parking'] == 'true'):
+            parking_val = True
+        else :
+            parking_val = False
+
         house_services = HouseServices.objects.create(
                             house=house_id, 
                             rooms=context['rooms'], 
                             bathrooms=context['bathrooms'], 
-                            pool=context['pool'],
-                            wifi=context['wifi'],
-                            parking=context['parking']
+                            pool=pool_val,
+                            wifi=wifi_val,
+                            parking=parking_val
                         )
         
         house_services.save()

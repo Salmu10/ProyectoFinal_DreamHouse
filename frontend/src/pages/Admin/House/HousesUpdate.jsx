@@ -24,7 +24,7 @@ export default function HousesUpdate({ }) {
             <div className="title">
                 <h1>Update House</h1>
             </div>
-            <HousesForm house={oneHouse} houseServices={oneHouseServices} houseImages={oneHouseImages} form_type={form_type} sendData={(data, formData) => updateHouse(id, data, formData)}/>
+            <HousesForm house={oneHouse} houseServices={oneHouseServices} houseImages={oneHouseImages} form_type={form_type} sendData={(formData) => updateHouse(id, formData)}/>
         </div>
     )
 }

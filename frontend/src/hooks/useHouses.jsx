@@ -23,6 +23,7 @@ export function useHouses() {
                     .catch(e => console.error(e));
                 HouseService.getOneHouseImages(data.id)
                     .then(({data}) => {
+                        console.log(data);
                         setOneHouseImages(data);
                     })
                     .catch(e => console.error(e));
@@ -46,46 +47,17 @@ export function useHouses() {
     const getOneHouseImages = useCallback((id) => {
         HouseService.getOneHouseImages(id)
             .then(({data}) => {
-                console.log(data);
+                // console.log(data);
                 setOneHouseImages(data);
             })
             .catch(e => console.error(e));
     }, []);
 
-    const addHouse = useCallback((data, formData) => {
-        let house_data = {
-            image: data.image,
-            price: data.price,
-            country: data.country,
-            location: data.location,
-            address: data.address,
-            latitude: data.latitude,
-            longitude: data.longitude,
-            category: data.category
-        }
-
-        let services_data = {
-            rooms: data.rooms,
-            bathrooms: data.bathrooms,
-            pool: data.pool,
-            wifi: data.wifi,
-            parking: data.parking
-        }
-
-        HouseService.createHouse(house_data, services_data)
+    const addHouse = useCallback((formData) => {
+        HouseService.createHouse(formData)
             .then(({ data, status }) => {
                 if (status === 200) {
                     setHouses([...houses, data]);
-                    HouseService.createHouseImages(data.id, formData)
-                        .then(({ data }) => {
-                            if (data.response == 'ok') {
-                                toast.success('House images uploaded successfully');
-                            }
-                        })
-                        .catch(e => {
-                            console.error(e);
-                            toast.error('Create house error');
-                        });
                     toast.success('House created successfully');
                     setIsCorrect(true);
                     setTimeout(() => { setIsCorrect(false); }, 1000);
@@ -97,27 +69,8 @@ export function useHouses() {
             });
     }, []);
 
-    const updateHouse = useCallback((id, data, formData) => {
-        let house_data = {
-            image: data.image,
-            price: data.price,
-            country: data.country,
-            location: data.location,
-            address: data.address,
-            latitude: data.latitude,
-            longitude: data.longitude,
-            category: data.category
-        }
-
-        let services_data = {
-            rooms: data.rooms,
-            bathrooms: data.bathrooms,
-            pool: data.pool,
-            wifi: data.wifi,
-            parking: data.parking
-        }
-
-        HouseService.updateHouse(id, house_data, services_data)
+    const updateHouse = useCallback((id, formData) => {
+        HouseService.updateHouse(id,formData )
             .then(({ data, status }) => {
                 if (status === 200) {
                     let old_houses = [...houses];
@@ -126,16 +79,6 @@ export function useHouses() {
                         old_houses[index] = data;
                         setHouses(old_houses);
                     }
-                    HouseService.updateHouseImages(id, formData)
-                        .then(({ data }) => {
-                            if (data.response == 'ok') {
-                                toast.success('House images uploaded successfully');
-                            }
-                        })
-                        .catch(e => {
-                            console.error(e);
-                            toast.error('Update house error');
-                        });
                     toast.success('House updated successfully');
                     setIsCorrect(true);
                     setTimeout(() => { setIsCorrect(false); }, 1000);

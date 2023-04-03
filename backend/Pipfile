@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 django = "*"
 djangorestframework = "*"
-mysqlclient = "*"
 django-cors-headers = "*"
 djangorestframework-jwt = "*"
 numpy = "*"
@@ -14,6 +13,7 @@ pyjwt = "==v1.7.1"
 django-environ = "*"
 pymysql = "*"
 pillow = "*"
+mysqlclient = "*"
 
 [dev-packages]
 

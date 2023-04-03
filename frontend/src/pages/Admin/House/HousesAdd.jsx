@@ -19,7 +19,7 @@ export default function HousesAdd({ }) {
             <div className="title">
                 <h1>Create House</h1>
             </div>
-            <HousesForm form_type={form_type} sendData={(data, formData) => addHouse(data, formData)}/>
+            <HousesForm form_type={form_type} sendData={(formData) => addHouse(formData)}/>
         </div>
     )
 }

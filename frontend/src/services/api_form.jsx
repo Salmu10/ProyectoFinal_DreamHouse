@@ -6,10 +6,10 @@ import JwtService from './JwtService';
 // const { refreshToken } = useAuth();
 
 const Axios = () => {
-    let api_files = null;
+    let api_form = null;
 
     if (JwtService.getToken()) {
-        api_files = axios.create({
+        api_form = axios.create({
             baseURL: secrets.URL_DRF,
             headers: {
                 "Content-Type": "multipart/form-data",
@@ -17,7 +17,7 @@ const Axios = () => {
             }
         });
     } else if (localStorage.getItem('ref_token')) {
-        api_files = axios.create({
+        api_form = axios.create({
             baseURL: secrets.URL_DRF,
             headers: {
                 "Content-Type": "multipart/form-data",
@@ -25,7 +25,7 @@ const Axios = () => {
             }
         });
     } else {
-        api_files = axios.create({
+        api_form = axios.create({
             baseURL: secrets.URL_DRF,
             headers: {
                 "Content-Type": "multipart/form-data",
@@ -33,7 +33,7 @@ const Axios = () => {
         });
     }
 
-    api_files.interceptors.response.use(
+    api_form.interceptors.response.use(
         (response) => response,
         (error) => {
             if (error.response.status === 403) {
@@ -44,7 +44,7 @@ const Axios = () => {
         }
     );
 
-    return api_files;
+    return api_form;
 }
 
 export default Axios;

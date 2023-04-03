@@ -11,11 +11,13 @@ import CarouselHouseImages from '../../components/Carousel/CarouselHouseImages';
 export default function HouseDetails ({ }) {
     const navigate = useNavigate();
     const { id } = useParams();
-    const { oneHouse, oneHouseServices, getOneHouse } = useHouses();
+    const { oneHouse, oneHouseServices, oneHouseImages, getOneHouse } = useHouses();
 
     useEffect(function () {
         getOneHouse(id);
     }, [])
+
+    console.log(oneHouseImages.main_image);
 
     return (
         oneHouse === '' ? <SpinnerLoading/> :
@@ -28,6 +30,7 @@ export default function HouseDetails ({ }) {
                 <div className="house_bio">
                     <p>{oneHouse.id}</p>
                     <p>{oneHouse.location}</p>
+                    {/* <img src={oneHouseImages.main_image}/> */}
                     <p>{oneHouse.country}</p>
                     <p>{oneHouseServices.rooms}</p>
                     <p>{oneHouseServices.bathrooms}</p>

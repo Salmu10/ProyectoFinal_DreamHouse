@@ -75,6 +75,6 @@ if __name__ == '__main__':
     print('Useres created')
     create_categories()
     print('Categories created')
-    create_houses()
-    print('Houses created')
+    # create_houses()
+    # print('Houses created')
     print('Dummys end')

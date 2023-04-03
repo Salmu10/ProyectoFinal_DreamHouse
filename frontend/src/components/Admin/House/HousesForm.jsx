@@ -10,12 +10,13 @@ import * as Yup from 'yup';
 export default function HousesForm({house= {id: '', country: '', location: '', image: '', price: '', address: '', latitude: '', longitude: '', category: ''}, 
 houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '', house_id: ''}, houseImages, form_type, sendData}) {
     const navigate = useNavigate();
-    const [archivos, setArchivos] = useState([]);
+    const [mainImage, setMainImage] = useState([]);
+    const [images, setImages] = useState([]);
 
     const validators = Yup.object().shape({
         country: Yup.string().required('*Country is required').min(3).max(50),
         location: Yup.string().required('*Location is required').min(3).max(50),
-        image: Yup.string().required('*Image is required').min(3).max(100),
+        // image: Yup.string().required('*Image is required').min(3).max(100),
         address: Yup.string().required('*Address is required').min(3).max(50),
         price: Yup.number().required('*Slots number must be between 5 and 20').min(0).max(2000000000),
         latitude: Yup.number().required('*Latitude is required').min(-180).max(180),
@@ -34,7 +35,7 @@ houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '
         if (house.id !== '') {
             setValue('country', house.country);
             setValue('location', house.location);
-            setValue('image', house.image);
+            // setValue('image', house.image);
             setValue('address', house.address);
             setValue('price', house.price);
             setValue('latitude', house.latitude);
@@ -56,16 +57,35 @@ houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '
         }
     }, [house, houseServices]);
 
-    const subirArchivos = e => {
-        setArchivos(e);
+    const sendMainImage = e => {
+        setMainImage(e);
+    };
+
+    const sendImages = e => {
+        setImages(e);
     };
     
     const send_data = data => {
         const formData = new FormData();
-        for (let i = 0; i < archivos.length; i++) {
-            formData.append('imagenes', archivos[i]);
+        for (let i = 0; i < images.length; i++) {
+            formData.append('imagenes', images[i]);
         }
-        sendData(data, formData);
+        if (mainImage != '') {
+            formData.append('main_image', mainImage[0]);
+        }
+        formData.append('price', data.price);
+        formData.append('country', data.country);
+        formData.append('location', data.location);
+        formData.append('address', data.address);
+        formData.append('latitude', data.latitude);
+        formData.append('longitude', data.longitude);
+        formData.append('category', data.category);
+        formData.append('rooms', data.rooms);
+        formData.append('bathrooms', data.bathrooms);
+        formData.append('pool', data.pool);
+        formData.append('wifi', data.wifi);
+        formData.append('parking', data.parking);
+        sendData(formData);
     };
 
     const redirects = {
@@ -78,7 +98,7 @@ houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '
     // console.log(houseImages);
 
     return (
-        <form className='house_form' onSubmit={handleSubmit(send_data)} encType="multipart/form-data">
+        <form className='house_form' onSubmit={handleSubmit(send_data)}>
             <div className="house_box">
                 <div className="house_attr">
                     <div className='country_box'>
@@ -93,7 +113,7 @@ houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '
                     </div>
                     <div className='image_box'>
                         <label htmlFor='image' className='etiqueta'>Image:</label>
-                        <input id='image' name="image" type="text" {...register('image')}/><br/>
+                        <input id='image' name="image" type="file" {...register('image')} onChange={(e) => sendMainImage(e.target.files)}/><br/>
                         <span className="error">{errors.image?.message}</span>
                     </div>
                     <div className='price_box'>
@@ -157,7 +177,7 @@ houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '
                 <div className="house_images">
                     <div className='images_box'>
                         <label htmlFor='images' className='etiqueta'>Image:</label>
-                        <input id='images' name="images" type="file" {...register('house_images')} multiple onChange={(e) => subirArchivos(e.target.files)}/><br/>
+                        <input id='images' name="images" type="file" {...register('house_images')} multiple onChange={(e) => sendImages(e.target.files)}/><br/>
                     </div>
                 </div>
             </div>

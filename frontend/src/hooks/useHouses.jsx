@@ -23,7 +23,7 @@ export function useHouses() {
                     .catch(e => console.error(e));
                 HouseService.getOneHouseImages(data.id)
                     .then(({data}) => {
-                        console.log(data);
+                        // console.log(data);
                         setOneHouseImages(data);
                     })
                     .catch(e => console.error(e));

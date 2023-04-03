@@ -1,4 +1,5 @@
-import api from "./api"
+import api from "./api";
+import api_files from "./api_files";
 
 const HouseService = {
 
@@ -18,8 +19,12 @@ const HouseService = {
         return api().get(`house_images/${id}`);
     },
 
-    createHouse(data, data_services) {
-        return api().post("/house", { 'house': data, 'house_services': data_services });
+    createHouse(house_data, services_data) {
+        return api().post("/house", { 'house': house_data, 'house_services': services_data });
+    },
+
+    createHouseImages(id, formData) {
+        return api_files().post(`house_setimages/${id}`, formData);
     },
 
     updateHouse(id, house_data, services_data) {
@@ -28,7 +33,7 @@ const HouseService = {
     },
 
     updateHouseImages(id, formData) {
-        return api().put(`house_setimages/${id}`, formData);
+        return api_files().put(`house_setimages/${id}`, formData);
     },
 
     deleteHouse(id) {

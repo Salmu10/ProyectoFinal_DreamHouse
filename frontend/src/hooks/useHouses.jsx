@@ -52,29 +52,49 @@ export function useHouses() {
             .catch(e => console.error(e));
     }, []);
 
-    const addHouse = useCallback(data => {
-        console.log(data);
-        // let station_data = {
-        //     name: data.name,
-        //     status: data.status,
-        //     image: data.image,
-        //     latitude: data.latitude,
-        //     longitude: data.longitude
-        // }
+    const addHouse = useCallback((data, formData) => {
+        let house_data = {
+            image: data.image,
+            price: data.price,
+            country: data.country,
+            location: data.location,
+            address: data.address,
+            latitude: data.latitude,
+            longitude: data.longitude,
+            category: data.category
+        }
 
-        // StationService.createStation(station_data, data.slots)
-        //     .then(({ data, status }) => {
-        //         if (status === 200) {
-        //             toast.success('Station created successfully');
-        //             setStations([...stations, data]);
-        //             setIsCorrect(true);
-        //             setTimeout(() => { setIsCorrect(false); }, 1000);
-        //         }
-        //     })
-        //     .catch(e => {
-        //         console.error(e);
-        //         toast.error('Create station error');
-        //     });
+        let services_data = {
+            rooms: data.rooms,
+            bathrooms: data.bathrooms,
+            pool: data.pool,
+            wifi: data.wifi,
+            parking: data.parking
+        }
+
+        HouseService.createHouse(house_data, services_data)
+            .then(({ data, status }) => {
+                if (status === 200) {
+                    setHouses([...houses, data]);
+                    HouseService.createHouseImages(data.id, formData)
+                        .then(({ data }) => {
+                            if (data.response == 'ok') {
+                                toast.success('House images uploaded successfully');
+                            }
+                        })
+                        .catch(e => {
+                            console.error(e);
+                            toast.error('Create house error');
+                        });
+                    toast.success('House created successfully');
+                    setIsCorrect(true);
+                    setTimeout(() => { setIsCorrect(false); }, 1000);
+                }
+            })
+            .catch(e => {
+                console.error(e);
+                toast.error('Create house error');
+            });
     }, []);
 
     const updateHouse = useCallback((id, data, formData) => {
@@ -97,53 +117,34 @@ export function useHouses() {
             parking: data.parking
         }
 
-        HouseService.updateHouseImages(id, formData)
+        HouseService.updateHouse(id, house_data, services_data)
             .then(({ data, status }) => {
-                console.log(data);
-                console.log(status);
-                // toast.success('House updated successfully');
-                // setIsCorrect(true);
-                // setTimeout(() => { setIsCorrect(false); }, 1000);
+                if (status === 200) {
+                    let old_houses = [...houses];
+                    const index = old_houses.findIndex(house => house.id === id);
+                    if (index !== -1) {
+                        old_houses[index] = data;
+                        setHouses(old_houses);
+                    }
+                    HouseService.updateHouseImages(id, formData)
+                        .then(({ data }) => {
+                            if (data.response == 'ok') {
+                                toast.success('House images uploaded successfully');
+                            }
+                        })
+                        .catch(e => {
+                            console.error(e);
+                            toast.error('Update house error');
+                        });
+                    toast.success('House updated successfully');
+                    setIsCorrect(true);
+                    setTimeout(() => { setIsCorrect(false); }, 1000);
+                }
             })
             .catch(e => {
                 console.error(e);
                 toast.error('Update house error');
             });
-
-        // HouseService.updateHouse(id, house_data, services_data)
-        //     .then(({ data, status }) => {
-        //         console.log(data);
-        //         console.log(status);
-        //         if (status === 200) {
-        //             let old_houses = [...houses];
-        //             const index = old_houses.findIndex(house => house.id === id);
-        //             if (index !== -1) {
-        //                 old_houses[index] = data;
-        //                 setHouses(old_houses);
-        //             }
-        //             HouseService.updateHouseImages(id, formData)
-        //                 .then(({ data, status }) => {
-        //                     console.log(data);
-        //                     console.log(status);
-        //                     // toast.success('House updated successfully');
-        //                     // setIsCorrect(true);
-        //                     // setTimeout(() => { setIsCorrect(false); }, 1000);
-        //                 })
-        //                 .catch(e => {
-        //                     console.error(e);
-        //                     toast.error('Update house error');
-        //                 });
-        //             // toast.success('House updated successfully');
-        //             // setIsCorrect(true);
-        //             // setTimeout(() => { setIsCorrect(false); }, 1000);
-        //         }
-        //     })
-        //     .catch(e => {
-        //         console.error(e);
-        //         toast.error('Update house error');
-        //     });
-        // setIsCorrect(true);
-        // setTimeout(() => { setIsCorrect(false); }, 1000);
     }, []);
 
     const deleteHouse = (id) => {

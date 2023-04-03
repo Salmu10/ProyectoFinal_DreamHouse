@@ -6,34 +6,34 @@ import JwtService from './JwtService';
 // const { refreshToken } = useAuth();
 
 const Axios = () => {
-    let api = null;
+    let api_files = null;
 
     if (JwtService.getToken()) {
-        api = axios.create({
+        api_files = axios.create({
             baseURL: secrets.URL_DRF,
             headers: {
-                "Content-type": "application/json",
+                "Content-Type": "multipart/form-data",
                 "Authorization": `Bearer ${JwtService.getToken()}`
             }
         });
     } else if (localStorage.getItem('ref_token')) {
-        api = axios.create({
+        api_files = axios.create({
             baseURL: secrets.URL_DRF,
             headers: {
-                "Content-type": "application/json",
+                "Content-Type": "multipart/form-data",
                 "Authorization": `Bearer ${localStorage.getItem('ref_token')}`
             }
         });
     } else {
-        api = axios.create({
+        api_files = axios.create({
             baseURL: secrets.URL_DRF,
             headers: {
-                "Content-type": "application/json",
+                "Content-Type": "multipart/form-data",
             }
         });
     }
 
-    api.interceptors.response.use(
+    api_files.interceptors.response.use(
         (response) => response,
         (error) => {
             if (error.response.status === 403) {
@@ -44,7 +44,7 @@ const Axios = () => {
         }
     );
 
-    return api;
+    return api_files;
 }
 
 export default Axios;

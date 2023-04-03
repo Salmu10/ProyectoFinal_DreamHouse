@@ -17,6 +17,7 @@ urlpatterns = [
     path('house/<int:id>', HouseView.as_view({'get': 'getOneHouse'})),
     path('houses_filtered', HouseView.as_view({'get': 'getHousesFiltered'})),
     path('house', HouseView.as_view({'post': 'post'})),
+    path('house_setimages/<int:id>', HouseView.as_view({'post': 'postImages'})),
     path('house/<int:id>', HouseView.as_view({'put': 'put'})),
     path('house_setimages/<int:id>', HouseView.as_view({'put': 'putImages'})),
     path('house/<int:id>', HouseView.as_view({'delete': 'delete'})),

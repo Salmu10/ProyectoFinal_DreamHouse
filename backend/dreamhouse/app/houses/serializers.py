@@ -40,8 +40,8 @@ class HouseSerializer(serializers.ModelSerializer):
             "longitude": instance.longitude,
         }
     
-    def create(user, house_context, services_context, images_context):
-        username = user['username']
+    def create(user, house_context, services_context):
+        username = user
         category_name = house_context['category']
         category = Category.objects.get(name=category_name)
 
@@ -74,9 +74,6 @@ class HouseSerializer(serializers.ModelSerializer):
 
         if house_services is None:
             raise serializers.ValidationError('Create house services error')
-
-        for image in images_context:
-            HouseImages.objects.create(image=image, house_id=house.id)
 
         return house.id
     

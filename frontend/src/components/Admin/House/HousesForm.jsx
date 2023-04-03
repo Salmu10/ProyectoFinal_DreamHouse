@@ -39,7 +39,13 @@ houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '
             setValue('price', house.price);
             setValue('latitude', house.latitude);
             setValue('longitude', house.longitude);
-            setValue('category', house.category);
+            if (house.category == 1) {
+                setValue('category', 'for_sale');
+            } else if (house.category == 2) {
+                setValue('category', 'rent');
+            } else if (house.category == 3) {
+                setValue('category', 'vacational_rent');
+            }
         }
         if (houseServices.id !== '') {
             setValue('rooms', houseServices.rooms);
@@ -114,9 +120,9 @@ houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '
                         <label htmlFor='category' className='etiqueta'>Category:</label>
                         <select id='category' name="category" {...register('category')} defaultValue="">
                             <option value="" disabled>Select</option>
-                            <option value="1">For sale</option>
-                            <option value="2">Rent</option>
-                            <option value="3">Vacational rent</option>
+                            <option value="for_sale">For sale</option>
+                            <option value="rent">Rent</option>
+                            <option value="vacational_rent">Vacational rent</option>
                         </select><br/>
                         <span className="error">{errors.category?.message}</span>
                     </div>

@@ -90,14 +90,22 @@ class HouseView(viewsets.GenericViewSet):
     
     def post(self, request):
         username = request.user
+        print(username)
         house_data = request.data.get('house')
         house_services = request.data.get('house_services')
-        house_images = request.data.get('house_images')
-        serializer = HouseSerializer.create(user=username, house_context=house_data, services_context=house_services, images_context=house_images)
+        serializer = HouseSerializer.create(user=username, house_context=house_data, services_context=house_services)
         house = House.objects.get(pk=serializer)
         house_serializer = HouseSerializer(house)
         return Response(house_serializer.data)
         # return Response(HouseSerializer.to_House(serializer))
+
+    def postImages(self, request, id):
+        print(request.FILES)
+        if request.FILES:
+            for image in request.FILES.getlist('imagenes'):
+                HouseImages.objects.create(image=image, house_id=id)
+                # HouseImages.objects.filter(house_id=id).update(image=image)
+        return Response({'response': 'ok'})
     
     def put(self, request, id):
         house = House.objects.get(pk=id)
@@ -115,7 +123,7 @@ class HouseView(viewsets.GenericViewSet):
         if request.FILES:
             for image in request.FILES.getlist('imagenes'):
                 HouseImages.objects.filter(house_id=id).update(image=image)
-        return Response('hola')
+        return Response({'response': 'ok'})
     
     def delete(self, request, id):
         house = House.objects.get(pk=id)

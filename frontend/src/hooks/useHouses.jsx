@@ -56,6 +56,7 @@ export function useHouses() {
     const addHouse = useCallback((formData) => {
         HouseService.createHouse(formData)
             .then(({ data, status }) => {
+                console.log(data);
                 if (status === 200) {
                     setHouses([...houses, data]);
                     toast.success('House created successfully');

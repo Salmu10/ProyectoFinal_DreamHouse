@@ -75,7 +75,7 @@ export default function Houses() {
                 <h1>Houses</h1>
             </div>
             <div className='filters-container'>
-                <Filters apply_filters={apply_filters} delete_filters={delete_filters} filters={filters}/>
+                <Filters apply_filters={apply_filters} delete_filters={delete_filters} filters={filters} mapShow={mapView}/>
             </div>
             <div className="houses">
                 <div className="buttons_box">

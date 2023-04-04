@@ -22,7 +22,6 @@ export default function HousesListAdmin ({ houses, deleteHouse }) {
                         <th>ID</th>
                         <th>Country</th>
                         <th>Location</th>
-                        <th>Image</th>
                         <th>price</th>
                         <th>address</th>
                         <th>Latitude</th>

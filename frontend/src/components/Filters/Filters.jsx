@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-export default function Filters({ apply_filters, delete_filters, filters}) {
+export default function Filters({ apply_filters, delete_filters, filters, mapShow}) {
 
     const {register, handleSubmit, setValue, formState: {errors} } = useForm();
 
@@ -13,6 +13,9 @@ export default function Filters({ apply_filters, delete_filters, filters}) {
         setValue("pool", '');
         setValue("parking", '');
         filters = { page: 1, limit: 6 };
+        if (mapShow == true) {
+            filters.map = true;
+        }
         delete_filters(filters);
     }
 

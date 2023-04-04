@@ -15,7 +15,6 @@ export default function HousesCardAdmin ({ house, index, deleteHouse }) {
             <td className="id_col">{house.id}</td>
             <td>{house.country}</td>
             <td>{house.location}</td>
-            <td>{house.image}</td>
             <td>{house.price}</td>
             <td>{house.address}</td>
             <td>{house.latitude}</td>

@@ -157,7 +157,7 @@ class HouseSerializer(serializers.ModelSerializer):
 
         page = int(filters_context['page'])
         limit = int(filters_context['limit'])
-        offset = (page - 1) * 3
+        offset = (page - 1) * 4
 
         #Filtro de Habitaciones
         if (rooms == ''):
@@ -213,7 +213,7 @@ class HouseSerializer(serializers.ModelSerializer):
         if (map == 'true'):
             houses = House.objects.filter(pk__in=house_list, category__in=categories)
         else: 
-            houses = House.objects.filter(pk__in=house_list, category__in=categories)[offset:offset+3]
+            houses = House.objects.filter(pk__in=house_list, category__in=categories)[offset:offset+4]
 
         total_houses = House.objects.filter(pk__in=house_list, category__in=categories)
 

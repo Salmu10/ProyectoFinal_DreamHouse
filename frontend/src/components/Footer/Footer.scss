@@ -10,6 +10,9 @@
     .page_logo_box {
         grid-column-start: 1;
         grid-column-end: 2;
+        img {
+            margin: auto;
+        }
     }
     .text_box {
         grid-column-start: 2;
@@ -22,6 +25,9 @@
     .logo_box {
         grid-column-start: 3;
         grid-column-end: 4;
+        img {
+            margin: auto;
+        }
     }
 }
 

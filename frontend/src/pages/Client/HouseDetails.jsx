@@ -20,27 +20,36 @@ export default function HouseDetails ({ }) {
 
     // console.log(oneHouseImages.main_image);
 
+    const price_type = oneHouse.category === 1 ? '€' : oneHouse.category === 2 ? '€/month' : '€/nigth';
+
     return (
         oneHouse === '' ? <SpinnerLoading/> :
         <div className="house_container">
-            <div className="title">
+            {/* <div className="title">
                 <h1>House details</h1>
-            </div>
+            </div> */}
             <div className="house_info">
-                <CarouselHouseImages images_list={oneHouseImages.images_list}/>
+                <div className="house_carousel">
+                    <CarouselHouseImages images_list={oneHouseImages.images_list}/>
+                </div>
                 <div className="house_bio">
+                    <p>{oneHouse.location}, {oneHouse.country}</p>
+                    <p>{oneHouse.price}{price_type}</p>
                     <p>{oneHouse.id}</p>
-                    <p>{oneHouse.location}</p>
                     {/* <img src={oneHouseImages.main_image}/> */}
                     {/* <img src={`${secrets.URL_BACKEND}${oneHouseImages.main_image}`}/> */}
-                    <p>{oneHouse.country}</p>
                     <p>{oneHouseServices.rooms}</p>
                     <p>{oneHouseServices.bathrooms}</p>
                 </div>
             </div>
 
             <div className="house_map">
-                <HouseMap house={oneHouse}/>
+                <div className="title">
+                    <h3>House location</h3>
+                </div>
+                <div className="map">
+                    <HouseMap house={oneHouse}/>
+                </div>
             </div>
         </div>
     )

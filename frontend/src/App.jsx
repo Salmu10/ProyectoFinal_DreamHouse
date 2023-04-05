@@ -60,7 +60,8 @@ function App() {
                     <Route path="/" element={<Home/>} />
                     <Route path="/home" element={<Home/>} />
                     <Route path="/houses" element={<Houses/>} />
-                    <Route path="/houses/:route_filters" element={<Houses/>} />
+                    <Route path="/houses/:route_filters" element={<Houses/>}/>
+                    <Route path="/house/:id" element={<HouseDetails/>}/>
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/register" element={<Register/>}/>
 
@@ -73,7 +74,6 @@ function App() {
 
                     <Route element={<AuthGuard/>}>
                       <Route path="/profile/:id" element={<Profile/>}/>
-                      <Route path="/house/:id" element={<HouseDetails/>}/>
                     </Route>
                   </Routes>
                 <Footer/>

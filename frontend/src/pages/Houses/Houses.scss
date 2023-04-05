@@ -10,9 +10,37 @@
             color: #333;
         }
     }
-    .stations-list-container {
-        display: block;
+    // .stations-list-container {
+    //     display: block;
+    //     width: 100%;
+    // }
+
+    .houses_components {
+        display: flex;
+        justify-content: flex-start;
         width: 100%;
+        margin: auto;
+        .filters_container {
+            display: block;
+            width: 350px;
+            min-width: 350px;
+            padding: 10px;
+            border: 2px solid #ff385c;
+            border-radius: 15px;
+        }
+        .houses {
+            display: block;
+            // width: 71%;
+            // margin: auto;
+            padding-left: 30px;
+            // border: 2px solid #ff385c;
+            // border-radius: 15px;
+            .buttons_box {
+                display: flex;
+                justify-content: flex-start;
+                gap: 20px;
+            }
+        }
     }
 
     .pagination {
@@ -20,13 +48,13 @@
         display: flex;
         list-style: none;
         border-radius: 0.25rem;
+        nav {
+            display: block;
+            margin: auto;
+            margin-top: 4%;
+        }
     }
     
-    .pagination nav {
-        display: block;
-        margin: auto;
-        margin-top: 4%;
-    }
 }
 
 @media screen and (max-width: 576px) {

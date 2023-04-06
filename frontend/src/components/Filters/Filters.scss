@@ -1,0 +1,74 @@
+.filters {
+    width: 100%;
+    .title {
+        text-align: center;
+        h2 {
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #333;
+        }
+    }
+    .forms_form {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        div {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            // text-align: left;
+            label {
+                display: block;
+                float: left;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: 16px;
+            }
+            input {
+                display: block;
+                float: right;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+
+    .filters {
+        padding: 5px;
+        .title {
+            padding: 5px;
+            h2 {
+                font-size: 20px;
+            }
+        }
+    }
+
+}
+
+@media screen and (min-width: 577px) {
+
+    .filters {
+        padding: 5px;
+        .title {
+            padding: 5px;
+            h2 {
+                font-size: 22px;
+            }
+        }
+    }
+
+}
+
+@media screen and (min-width: 992px) {
+
+    .filters {
+        padding: 5px;
+        .title {
+            padding: 5px;
+            h2 {
+                font-size: 25px;
+            }
+        }
+    }
+}

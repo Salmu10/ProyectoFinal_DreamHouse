@@ -19,7 +19,7 @@ export default function Search({ apply_filters}) {
     }, [filters]);
 
     return (
-        <div className="filters">
+        <div className="search">
             FILTERS
             <form className="forms_form" id="login_form" onSubmit={handleSubmit(filter)}>
                 <div className="category_box">

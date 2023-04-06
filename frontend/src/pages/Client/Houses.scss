@@ -10,11 +10,6 @@
             color: #333;
         }
     }
-    // .stations-list-container {
-    //     display: block;
-    //     width: 100%;
-    // }
-
     .houses_components {
         display: flex;
         justify-content: flex-start;
@@ -30,32 +25,61 @@
         }
         .houses {
             display: block;
-            // width: 71%;
-            // margin: auto;
+            width: 100%;
             padding-left: 30px;
-            // border: 2px solid #ff385c;
-            // border-radius: 15px;
             .buttons_box {
                 display: flex;
                 justify-content: flex-start;
                 gap: 20px;
+                width: 100%;
                 button {
                     padding: 5px;
                     width: 70px;
-                    // border: 2px solid #b62f48;
                     border: 2px solid #ff627f;
-                    border-radius: 15px;
-                    background-color: #ff385c;
+                    border-radius: 10px;
                     color: #FFF;
                     font-size: 15px;
                     font-weight: bold;
                     text-transform: uppercase;
-                    &:hover {
-                        border: 2px solid #ff385c;
-                        background-color: #ff627f;
+                }
+                .list-active, .map-active {
+                    background-color: #aa2840;
+                }
+                .list, .map {
+                    background-color: #ff385c;
+                }
+            }
+            .maps_content {
+                width: 100%;
+                height: 70vh;
+                margin-top: 20px;
+                border: 2px solid #ff385c;
+                border-radius: 15px;
+                .mapboxgl-map {
+                    border-radius: 15px;
+                }
+                .marker_button {
+                    background-color: transparent;
+                    border: none;
+                }
+                .popup {
+                    text-align: center;
+                    color: #333;
+                    cursor: pointer;
+                    width: 180px;
+                    height: 135px;
+                    h5 {
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        font-size: 12px;
+                        text-transform: uppercase;
+                        font-weight: bold;
                     }
-                    &:active {
-                        background-color: #ff385c;
+                    img {
+                        border-radius: 3px;
+                        width: 180px;
+                        height: 120px;
+                        border-radius: 3px;
                     }
                 }
             }

@@ -15,8 +15,29 @@
         margin: auto;
         border: 2px solid #ff385c;
         border-radius: 15px;
-        .mapboxgl-map {
-            border-radius: 15px;
+        .maps_content {
+            width: 100%;
+            .mapboxgl-map {
+                border-radius: 15px;
+            }
+            .marker_button {
+                background-color: transparent;
+                border: none;
+            }
+            .popup {
+                text-align: center;
+                color: #333;
+                cursor: pointer;
+                h5 {
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                }
+                img {
+                    border-radius: 3px;
+                }
+            }
         }
     }
 }
@@ -32,6 +53,20 @@
         }
         .maps {
             width: 90%;
+            .maps_content {
+                height: 60vh;
+                .popup {
+                    width: 170px;
+                    height: 130px;
+                    h5 {
+                        font-size: 11px;
+                    }
+                    img {
+                        width: 170px;
+                        height: 113px;
+                    }
+                }
+            }
         }
     }
 
@@ -48,6 +83,20 @@
         }
         .maps {
             width: 80%;
+            .maps_content {
+                height: 60vh;
+                .popup {
+                    width: 170px;
+                    height: 130px;
+                    h5 {
+                        font-size: 11px;
+                    }
+                    img {
+                        width: 170px;
+                        height: 113px;
+                    }
+                }
+            }
         }
     }
 
@@ -64,6 +113,20 @@
         }
         .maps {
             width: 70%;
+            .maps_content {
+                height: 60vh;
+                .popup {
+                    width: 170px;
+                    height: 130px;
+                    h5 {
+                        font-size: 11px;
+                    }
+                    img {
+                        width: 170px;
+                        height: 113px;
+                    }
+                }
+            }
         }
     }
 

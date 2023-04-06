@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import './Filters.scss';
 
 export default function Filters({ apply_filters, delete_filters, filters, mapShow}) {
 
@@ -53,12 +54,14 @@ export default function Filters({ apply_filters, delete_filters, filters, mapSho
 
     return (
         <div className="filters">
-            FILTERS
+            <div className="title">
+                <h2>Filters</h2>
+            </div>
             <form className="forms_form" id="login_form" onSubmit={handleSubmit(filter)}>
-                <div className="rooms_box">
+                <div className="category_box">
                     <label htmlFor='category' className='etiqueta'>Category:</label>
                     <select id='category' name="category" {...register('category')} defaultValue="">
-                        <option value="" disabled>Select the type of action</option>
+                        <option value="" disabled>Type of action</option>
                         <option value="for_sale">For sale</option>
                         <option value="rent">Rent</option>
                         <option value="vacational_rent">Vacational rent</option>
@@ -67,7 +70,7 @@ export default function Filters({ apply_filters, delete_filters, filters, mapSho
                 <div className="rooms_box">
                     <label htmlFor='rooms' className="etiqueta">Rooms:</label>
                     <select id='rooms' name="rooms" {...register('rooms')} defaultValue="">
-                        <option value="" disabled>Select the number of rooms</option>
+                        <option value="" disabled>Number of rooms</option>
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -80,7 +83,7 @@ export default function Filters({ apply_filters, delete_filters, filters, mapSho
                 <div className="bathrooms_box">
                     <label htmlFor='bathrooms' className="etiqueta">Bathrooms:</label>
                     <select id='bathrooms' name="bathrooms" {...register('bathrooms')} defaultValue="">
-                        <option value="" disabled>Select the number of bathrooms</option>
+                        <option value="" disabled>Number of bathrooms</option>
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>

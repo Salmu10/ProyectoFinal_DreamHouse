@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Map, { GeolocateControl, Marker, Popup } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import "./HousesMap.scss";
+// import "./HousesMap.scss";
 import { useNavigate } from "react-router-dom";
 
 export default function StationsMap({ houses = [], setShow }) {

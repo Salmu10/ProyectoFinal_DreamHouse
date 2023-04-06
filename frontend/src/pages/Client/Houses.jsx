@@ -80,8 +80,8 @@ export default function Houses() {
                 </div>
                 <div className="houses">
                     <div className="buttons_box">
-                        <button type="button" className={mapView ? 'list' : 'list active'} onClick={() => list_view()}>List</button>
-                        <button type="button" className={mapView ? 'map active' : 'map'} onClick={() => map_view()}>Map</button>
+                        <button type="button" className={mapView ? 'list' : 'list-active'} onClick={() => list_view()}>List</button>
+                        <button type="button" className={mapView ? 'map-active' : 'map'} onClick={() => map_view()}>Map</button>
                     </div>
                     <div className='houses_list_container'>
                         {/* <HousesList houses={houses}/> */}

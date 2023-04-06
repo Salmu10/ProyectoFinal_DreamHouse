@@ -23,7 +23,7 @@ import AuthGuard from './services/guards/AuthGuard';
 import AdminGuard from './services/guards/AdminGuard';
 
 const Home = React.lazy(() => import("./pages/Home/Home"));
-const Houses = React.lazy(() => import( "./pages/Houses/Houses"));
+const Houses = React.lazy(() => import( "./pages/Client/Houses"));
 const Dashboard = React.lazy(() => import( "./pages/Admin/Dashboard"));
 const Login = React.lazy(() => import( "./pages/Login/Login"));
 const Register = React.lazy(() => import( "./pages/Login/Register"));

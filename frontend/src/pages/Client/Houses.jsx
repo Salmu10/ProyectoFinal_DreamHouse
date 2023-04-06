@@ -71,17 +71,17 @@ export default function Houses() {
 
     return (
         <div className="houses_container">
-            <div className="title">
+            {/* <div className="title">
                 <h1>Houses</h1>
-            </div>
+            </div> */}
             <div className="houses_components">
                 <div className='filters_container'>
                     <Filters apply_filters={apply_filters} delete_filters={delete_filters} filters={filters} mapShow={mapView}/>
                 </div>
                 <div className="houses">
                     <div className="buttons_box">
-                        <button type="button" className="list" onClick={() => list_view()}>List</button>
-                        <button type="button" className="map" onClick={() => map_view()}>Map</button>
+                        <button type="button" className={mapView ? 'list' : 'list active'} onClick={() => list_view()}>List</button>
+                        <button type="button" className={mapView ? 'map active' : 'map'} onClick={() => map_view()}>Map</button>
                     </div>
                     <div className='houses_list_container'>
                         {/* <HousesList houses={houses}/> */}

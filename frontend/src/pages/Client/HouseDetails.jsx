@@ -20,7 +20,7 @@ export default function HouseDetails ({ }) {
 
     // console.log(oneHouseImages.main_image);
 
-    const price_type = oneHouse.category === 1 ? '€' : oneHouse.category === 2 ? '€/month' : '€/nigth';
+    const price_type = oneHouse.category === 1 ? '€' : oneHouse.category === 2 ? '€/month' : '€/night';
 
     return (
         oneHouse === '' ? <SpinnerLoading/> :

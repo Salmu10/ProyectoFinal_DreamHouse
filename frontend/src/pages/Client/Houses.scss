@@ -39,6 +39,25 @@
                 display: flex;
                 justify-content: flex-start;
                 gap: 20px;
+                button {
+                    padding: 5px;
+                    width: 70px;
+                    // border: 2px solid #b62f48;
+                    border: 2px solid #ff627f;
+                    border-radius: 15px;
+                    background-color: #ff385c;
+                    color: #FFF;
+                    font-size: 15px;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    &:hover {
+                        border: 2px solid #ff385c;
+                        background-color: #ff627f;
+                    }
+                    &:active {
+                        background-color: #ff385c;
+                    }
+                }
             }
         }
     }

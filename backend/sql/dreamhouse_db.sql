@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-04-2023 a las 21:17:21
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.0.13
+-- Tiempo de generación: 11-04-2023 a las 17:22:41
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `auth_group` (
   `id` int(11) NOT NULL,
   `name` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -42,7 +42,7 @@ CREATE TABLE `auth_group_permissions` (
   `id` bigint(20) NOT NULL,
   `group_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -55,7 +55,7 @@ CREATE TABLE `auth_permission` (
   `name` varchar(255) NOT NULL,
   `content_type_id` int(11) NOT NULL,
   `codename` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `auth_permission`
@@ -122,7 +122,7 @@ CREATE TABLE `django_admin_log` (
   `change_message` longtext NOT NULL,
   `content_type_id` int(11) DEFAULT NULL,
   `user_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -134,7 +134,7 @@ CREATE TABLE `django_content_type` (
   `id` int(11) NOT NULL,
   `app_label` varchar(100) NOT NULL,
   `model` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `django_content_type`
@@ -164,7 +164,7 @@ CREATE TABLE `django_migrations` (
   `app` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `django_migrations`
@@ -205,7 +205,7 @@ CREATE TABLE `django_session` (
   `session_key` varchar(40) NOT NULL,
   `session_data` longtext NOT NULL,
   `expire_date` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -218,7 +218,7 @@ CREATE TABLE `houses_category` (
   `slug` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
   `image` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `houses_category`
@@ -238,7 +238,7 @@ INSERT INTO `houses_category` (`id`, `slug`, `name`, `image`) VALUES
 CREATE TABLE `houses_house` (
   `id` bigint(20) NOT NULL,
   `image` varchar(100) NOT NULL,
-  `price` varchar(100) NOT NULL,
+  `price` int(11) NOT NULL,
   `country` varchar(100) NOT NULL,
   `location` varchar(100) NOT NULL,
   `address` varchar(100) NOT NULL,
@@ -246,19 +246,19 @@ CREATE TABLE `houses_house` (
   `longitude` decimal(30,20) NOT NULL,
   `category_id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `houses_house`
 --
 
 INSERT INTO `houses_house` (`id`, `image`, `price`, `country`, `location`, `address`, `latitude`, `longitude`, `category_id`, `user_id`) VALUES
-(1, 'main_image/a4ef5748-d982-413b-a473-2d61c8084a8d.jpg', '300', 'España', 'Ontinyent', 'C/ ....Ontinyent', '38.82241927517543400000', '-0.59856972113489200000', 3, 3),
-(2, 'main_image/2e4037c7-417a-47a1-bfde-919e605706ee.jpg', '2500', 'España', 'Benidorm', 'C/ ...Benidorm', '38.54019120496513000000', '-0.11831413551159968000', 2, 3),
-(3, 'main_image/0cd5ef66-8ce2-4453-956a-a5b9ce32a159.jpg', '135000', 'España', 'Barcelona', 'C/ ...Barcelona', '41.39443777006087000000', '2.17967891265510570000', 1, 3),
-(4, 'main_image/ac967e1f-11a1-40e2-ac02-c1546244f649.jpg', '250', 'España', 'Madrid', 'C/ ...Madrid', '40.40299289922746000000', '-3.67386140993368800000', 3, 3),
-(5, 'main_image/f1202d07-0792-4ef8-90d0-069ae458c097.jpg', '300', 'España', 'Bilbao', 'C/ ....Bilbao', '43.26358595458787400000', '-2.93125192023363500000', 3, 3),
-(6, 'main_image/8ae46add-681c-4777-b871-5d3ebcd148f5.jpg', '1600', 'España', 'Sevilla', 'C/ ...Sevilla', '37.40296613333940000000', '-5.97425405883813600000', 2, 3);
+(1, 'main_image/a4ef5748-d982-413b-a473-2d61c8084a8d.jpg', 300, 'España', 'Ontinyent', 'C/ ....Ontinyent', '38.82241927517543400000', '-0.59856972113489200000', 3, 3),
+(2, 'main_image/2e4037c7-417a-47a1-bfde-919e605706ee.jpg', 2500, 'España', 'Benidorm', 'C/ ...Benidorm', '38.54019120496513000000', '-0.11831413551159968000', 2, 3),
+(3, 'main_image/0cd5ef66-8ce2-4453-956a-a5b9ce32a159.jpg', 135000, 'España', 'Barcelona', 'C/ ...Barcelona', '41.39443777006087000000', '2.17967891265510570000', 1, 3),
+(4, 'main_image/ac967e1f-11a1-40e2-ac02-c1546244f649.jpg', 250, 'España', 'Madrid', 'C/ ...Madrid', '40.40299289922746000000', '-3.67386140993368800000', 3, 3),
+(5, 'main_image/f1202d07-0792-4ef8-90d0-069ae458c097.jpg', 300, 'España', 'Bilbao', 'C/ ....Bilbao', '43.26358595458787400000', '-2.93125192023363500000', 3, 3),
+(6, 'main_image/8ae46add-681c-4777-b871-5d3ebcd148f5.jpg', 1600, 'España', 'Sevilla', 'C/ ...Sevilla', '37.40296613333940000000', '-5.97425405883813600000', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -270,7 +270,7 @@ CREATE TABLE `houses_houseimages` (
   `id` bigint(20) NOT NULL,
   `image` varchar(100) NOT NULL,
   `house_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `houses_houseimages`
@@ -318,7 +318,7 @@ CREATE TABLE `houses_houseservices` (
   `wifi` tinyint(1) NOT NULL,
   `parking` tinyint(1) NOT NULL,
   `house_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `houses_houseservices`
@@ -345,7 +345,7 @@ CREATE TABLE `users_profile` (
   `image` varchar(100) NOT NULL,
   `biography` varchar(100) NOT NULL,
   `user_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users_profile`
@@ -371,7 +371,7 @@ CREATE TABLE `users_user` (
   `type` varchar(10) NOT NULL,
   `last_login` datetime(6) DEFAULT NULL,
   `is_superuser` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users_user`
@@ -380,7 +380,7 @@ CREATE TABLE `users_user` (
 INSERT INTO `users_user` (`id`, `uuid`, `username`, `email`, `password`, `type`, `last_login`, `is_superuser`) VALUES
 (1, '59257605-52a0-0fa8-42be-622fa9254781', 'salmu10', 'salmu10@gmail.com', 'pbkdf2_sha256$390000$XJFr4McSZEBmjmadqMezRr$KNb1hL/CZznhyvsUve1LrcVaBB4wygrkXN6GtYPcZ4M=', 'client', NULL, 0),
 (2, '31c773de-d2e1-b461-0b30-1260294270ad', 'salvamu10', 'salvamu10@gmail.com', 'pbkdf2_sha256$390000$2KbUwEHc9n3ZRAmEjD6tnb$VV8xT21TArWAdf/Pe1EmXaohfqrn3Pkf1EMuQqW8nXs=', 'client', NULL, 0),
-(3, 'f5d2062e-93bd-c55b-00ad-2fda8af32e11', 'salva', 'salva@gmail.com', 'pbkdf2_sha256$390000$7va7BxZHWQJAZzbDo4E75n$jIGI8BVd35G29459WJC/prh1KXlcNdzO4tej0v3s/vA=', 'admin', NULL, 0);
+(3, 'f5d2062e-93bd-c55b-00ad-2fda8af32e11', 'salva', 'salva@gmail.com', 'pbkdf2_sha256$600000$vDGaJ9b9vXe6zAUIfqcW2F$RGBC1GvhO92c6rHAseBBSZx8UhSub+NqadrgTYI2dTU=', 'admin', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -392,7 +392,7 @@ CREATE TABLE `users_user_groups` (
   `id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `group_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -404,7 +404,7 @@ CREATE TABLE `users_user_user_permissions` (
   `id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `permission_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tablas volcadas

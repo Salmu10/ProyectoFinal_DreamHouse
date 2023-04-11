@@ -62,6 +62,7 @@ img {
     padding: 1.25rem;
     position: relative;
     transition: .15s ease-in;
+    cursor: pointer;
     &:hover, &:focus-within {
       box-shadow: 0 0 0 2px #ff385c, 0 10px 60px 0 rgba(#000, .1);
       transform: translatey(-5px);

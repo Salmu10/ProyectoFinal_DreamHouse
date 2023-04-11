@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('image', models.ImageField(upload_to='main_image')),
-                ('price', models.CharField(max_length=100)),
+                ('price', models.IntegerField()),
                 ('country', models.CharField(max_length=100)),
                 ('location', models.CharField(max_length=100)),
                 ('address', models.CharField(max_length=100)),

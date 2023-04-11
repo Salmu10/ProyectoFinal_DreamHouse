@@ -8,6 +8,8 @@ export default function Filters({ apply_filters, delete_filters, filters, mapSho
 
     const clear_filters = () => {
         setValue("category", '');
+        setValue("min_price", '');
+        setValue("max_price", '');
         setValue("rooms", '');
         setValue("bathrooms", '');
         setValue("wifi", '');
@@ -21,9 +23,16 @@ export default function Filters({ apply_filters, delete_filters, filters, mapSho
     }
 
     const filter = data => {
+        console.log(data.min_price);
         filters = { page: 1, limit: 6 };
         if (data.category != '') {
             filters.category = data.category;
+        }
+        if (data.min_price != '') {
+            filters.min_price = data.min_price;
+        }
+        if (data.max_price != '') {
+            filters.max_price = data.max_price;
         }
         if (data.rooms != '') {
             filters.rooms = data.rooms;
@@ -45,6 +54,8 @@ export default function Filters({ apply_filters, delete_filters, filters, mapSho
 
     useEffect(() => {
         setValue('category', filters.category);
+        setValue("min_price", filters.min_price);
+        setValue("max_price", filters.max_price);
         setValue('rooms', filters.rooms);
         setValue('bathrooms', filters.bathrooms);
         setValue('wifi', filters.wifi);
@@ -67,6 +78,19 @@ export default function Filters({ apply_filters, delete_filters, filters, mapSho
                         <option value="vacational_rent">Vacational rent</option>
                     </select><br/>
                 </div>
+                <div className="price_box">
+                    <label htmlFor='price' className="etiqueta">Price:</label>
+                    <div className="price_inputs">
+                        <div className="min_price_box">
+                            <label htmlFor='min_price' className="min_price_label">Min:</label>
+                            <input type="number" className="min_price" id='min_price' name='min_price' {...register("min_price")}/>
+                        </div>
+                        <div className="max_price_box">
+                            <label htmlFor='max_price' className="max_price_label">Max:</label>
+                            <input type="number" className="max_price" id='max_price' name='max_price' {...register("max_price")}/>
+                        </div>
+                    </div>
+                </div>
                 <div className="rooms_box">
                     <label htmlFor='rooms' className="etiqueta">Rooms:</label>
                     <select id='rooms' name="rooms" {...register('rooms')} defaultValue="">
@@ -78,7 +102,6 @@ export default function Filters({ apply_filters, delete_filters, filters, mapSho
                         <option value="4">4</option>
                         <option value="5">5 or more</option>
                     </select><br/>
-                    {/* <input type="number" min="0" className="rooms" {...register("rooms")} defaultValue={''}/> */}
                 </div>
                 <div className="bathrooms_box">
                     <label htmlFor='bathrooms' className="etiqueta">Bathrooms:</label>
@@ -91,16 +114,26 @@ export default function Filters({ apply_filters, delete_filters, filters, mapSho
                         <option value="4">4</option>
                         <option value="5">5 or more</option>
                     </select><br/>
-                    {/* <input type="number" min="0" className="bathrooms" {...register("bathrooms")} defaultValue={''}/> */}
                 </div>
                 <div className="services_box">
                     <label htmlFor='services' className="etiqueta">Services:</label>
-                    <input type="checkbox" className="wifi" {...register("wifi")}/>Wifi
-                    <input type="checkbox" className="pool" {...register("pool")}/>Pool
-                    <input type="checkbox" className="parking" {...register("parking")}/>Parking
+                    <div className='checkbox_box'>
+                        <input type="checkbox" className="wifi" id='wifi' name='wifi' {...register("wifi")}/>
+                        <label htmlFor='wifi' className="check_label">Wifi</label>
+                    </div>
+                    <div className='checkbox_box'>
+                        <input type="checkbox" className="pool" id='pool' name='pool' {...register("pool")}/>
+                        <label htmlFor='pool' className="check_label">Pool</label>
+                    </div>
+                    <div className='checkbox_box'>
+                        <input type="checkbox" className="parking" id='parking' name='parking' {...register("parking")}/>
+                        <label htmlFor='parking' className="check_label">Parking</label>
+                    </div>
                 </div>
                 <div className="buttons_box">
-                    <input type="submit" className="filter_button" value="Filter"/>
+                    {/* <input type="submit" className="filter_button" value="Filter"/> */}
+                    {/* data-bs-dismiss="modal" */}
+                    <button type="submit" className="filter_button">Filter</button>
                     <button type="button" className="delete_button" onClick={() => clear_filters()}>Clear</button>
                 </div>
             </form>

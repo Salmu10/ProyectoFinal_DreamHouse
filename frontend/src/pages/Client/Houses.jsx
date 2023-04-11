@@ -71,10 +71,12 @@ export default function Houses() {
 
     return (
         <div className="houses_container">
-            {/* <div className="title">
-                <h1>Houses</h1>
-            </div> */}
             <div className="houses_components">
+                    <div className="buttons_box_responsive">
+                        <button type="button" className={mapView ? 'list' : 'list-active'} onClick={() => list_view()}>List</button>
+                        <button type="button" className={mapView ? 'map-active' : 'map'} onClick={() => map_view()}>Map</button>
+                        <button type="button" className="filters_button" data-bs-toggle="modal" data-bs-target="#exampleModal">Filters</button>
+                    </div>
                 <div className='filters_container'>
                     <Filters apply_filters={apply_filters} delete_filters={delete_filters} filters={filters} mapShow={mapView}/>
                 </div>
@@ -84,13 +86,28 @@ export default function Houses() {
                         <button type="button" className={mapView ? 'map-active' : 'map'} onClick={() => map_view()}>Map</button>
                     </div>
                     <div className='houses_list_container'>
-                        {/* <HousesList houses={houses}/> */}
                         {houses_view}
                     </div>
                 </div>
             </div>
-            <div className="pagination" hidden={mapView} >
-                <nav >
+            <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h2 className="modal-title text-uppercase fw-bold" id="staticBackdropLabel">Filters</h2>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <div className="container-fluid">
+                                {/* <p>holaaaaaaaaaaaas</p> */}
+                                <Filters apply_filters={apply_filters} delete_filters={delete_filters} filters={filters} mapShow={mapView}/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="pagination" hidden={mapView}>
+                <nav>
                     <ul className="pagination pg-blue">
                         <li className="page-item" onClick={() => change_page(filters.page-1)} hidden={filters.page == 1}>
                             <span className="page-link">Prev</span>

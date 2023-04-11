@@ -149,6 +149,7 @@ class HouseSerializer(serializers.ModelSerializer):
         map = filters_context.get('map', False)
         category = filters_context.get('category', '')
         min_price = filters_context.get('min_price', '')
+        max_price = filters_context.get('max_price', '')
         rooms = filters_context.get('rooms', '')
         bathrooms = filters_context.get('bathrooms', '')
         wifi = filters_context.get('wifi', False)
@@ -158,6 +159,33 @@ class HouseSerializer(serializers.ModelSerializer):
         page = int(filters_context['page'])
         limit = int(filters_context['limit'])
         offset = (page - 1) * 4
+
+        #Filtro de Categorias
+        if (category == ''):
+            category_filters['name__contains'] = ''
+            categories_id = Category.objects.filter(**category_filters)
+        elif (category == 'for_sale'):
+            category_filters['name__iexact'] = 'for_sale'
+            categories_id = Category.objects.filter(**category_filters)
+        elif (category == 'rent'):
+            category_filters['name__iexact'] = 'rent'
+            categories_id = Category.objects.filter(**category_filters)
+        else:
+            category_filters['name__iexact'] = 'vacational_rent'
+            categories_id = Category.objects.filter(**category_filters)
+
+        for category in categories_id:
+            categories.append(category.id)
+
+        #Filtro de Precio
+        if (min_price == '' and max_price == ''):
+            print('No hay rangos de precios')
+        elif (min_price != '' and max_price == ''):
+            house_filters['price__gt'] = int(min_price)
+        elif (min_price == '' and max_price != ''):
+            house_filters['price__lt'] = int(max_price)
+        else:
+            house_filters['price__range'] = (int(min_price),  int(max_price))
 
         #Filtro de Habitaciones
         if (rooms == ''):
@@ -187,23 +215,6 @@ class HouseSerializer(serializers.ModelSerializer):
         if (parking == 'true'):
             services_filters['parking'] = True
 
-        #Filtro de Cuartos de Baño
-        if (category == ''):
-            category_filters['name__contains'] = ''
-            categories_id = Category.objects.filter(**category_filters)
-        elif (category == 'for_sale'):
-            category_filters['name__iexact'] = 'for_sale'
-            categories_id = Category.objects.filter(**category_filters)
-        elif (category == 'rent'):
-            category_filters['name__iexact'] = 'rent'
-            categories_id = Category.objects.filter(**category_filters)
-        else:
-            category_filters['name__iexact'] = 'vacational_rent'
-            categories_id = Category.objects.filter(**category_filters)
-
-        for category in categories_id:
-            categories.append(category.id)
-
         houses_id = HouseServices.objects.filter(**services_filters)
         
         for house in houses_id:
@@ -211,11 +222,11 @@ class HouseSerializer(serializers.ModelSerializer):
 
         #Filtro de vista
         if (map == 'true'):
-            houses = House.objects.filter(pk__in=house_list, category__in=categories)
+            houses = House.objects.filter(pk__in=house_list, category__in=categories, **house_filters)
         else: 
-            houses = House.objects.filter(pk__in=house_list, category__in=categories)[offset:offset+4]
+            houses = House.objects.filter(pk__in=house_list, category__in=categories, **house_filters)[offset:offset+4]
 
-        total_houses = House.objects.filter(pk__in=house_list, category__in=categories)
+        total_houses = House.objects.filter(pk__in=house_list, category__in=categories, **house_filters)
 
         houses_res = {'houses': houses, 'total_houses': len(total_houses)}
 

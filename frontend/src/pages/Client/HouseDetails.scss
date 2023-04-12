@@ -1,34 +1,57 @@
 .house_container {
     padding: 20px;
     width: 100%;
-    .title {
-        text-align: center;
-        padding: 20px;
-        h1 {
-            text-transform: uppercase;
-            font-weight: bold;
-            color: #333;
-        }
-    }
     .house_info {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 20px;
         .house_carousel {
             display: block;
-            width: 50%;
             margin: auto;
-            max-height: 350px;
             .carousel img {
-                max-height: 350px;
                 object-fit: cover;
             }
         }
-        .house_bio {
-            display: block;
-            width: 50%;
+        .house {
+            display: flex;
+            flex-direction: column;
             margin: auto;
+            .house_bio {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                .location {
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    text-align: center;
+                    width: 100%;
+                }
+                .address, .price, .category {
+                    // font-weight: bold;
+                    width: 100%;
+                }
+                p {
+                    text-align: center;
+                    margin: auto;
+                    width: 47%;
+                    // text-align: left;
+                    // margin: auto;
+                    // margin-left: 0;
+                }
+            }
+            .reserve_box {
+                display: block;
+                margin: auto;
+                button {
+                    border: 2px solid #ff627f;
+                    border-radius: 10px;
+                    color: #FFF;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    background-color: #ff385c;
+                    &:hover {
+                        background-color: #aa2840;
+                    }
+                }
+            }
         }
     }
     .house_map {
@@ -56,23 +79,8 @@
                     background-color: transparent;
                     border: none;
                 }
-                .popup {
-                    text-align: center;
-                    color: #333;
-                    cursor: pointer;
-                    h5 {
-                        text-transform: uppercase;
-                        font-weight: bold;
-                        text-transform: uppercase;
-                        font-weight: bold;
-                    }
-                    img {
-                        border-radius: 3px;
-                    }
-                }
             }
         }
-
     }
 }
 
@@ -80,9 +88,43 @@
 
     .house_container {
         min-height: 83vh;
-        .title {
-            h1 {
-                font-size: 25px;
+        .house_info {
+            flex-direction: column;
+            padding: 10px;
+            .house_carousel {
+                width: 100%;
+                height: 230px;
+                .carousel img {
+                    height: 230px;
+                }
+            }
+            .house {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 5%;
+                .house_bio {
+                    gap: 5vw;
+                    .location {
+                        font-size: 22px;
+                    }
+                    .address, .price, .category {
+                        font-size: 18px;
+                    }
+                    p {
+                        font-size: 18px;
+                        .icon {
+                            font-size: 28px;
+                        }
+                    }
+                }
+                .reserve_box {
+                    margin-top: 30px;
+                    button {
+                        padding: 10px;
+                        width: 170px;
+                        font-size: 20px;
+                    }
+                }
             }
         }
         .house_map {
@@ -90,24 +132,13 @@
             .title {
                 padding: 10px;
                 h3 {
-                    font-size: 18px;
+                    font-size: 25px;
                 }
             }
             .map {
-                width: 90%;
+                width: 100%;
                 .maps_content {
                     height: 400px;
-                    .popup {
-                        width: 100px;
-                        height: 70px;
-                        h5 {
-                            font-size: 9px;
-                        }
-                        img {
-                            width: 170px;
-                            height: 113px;
-                        }
-                    }
                 }
             }
         }
@@ -119,9 +150,45 @@
 
     .house_container {
         min-height: 81vh;
-        .title {
-            h1 {
-                font-size: 30px;
+        .house_info {
+            flex-direction: column;
+            padding: 10px;
+            .house_carousel {
+                width: 90%;
+                margin: auto;
+                height: 450px;
+                .carousel img {
+                    height: 450px;
+                }
+            }
+            .house {
+                flex-direction: column;
+                width: 100%;
+                margin: auto;
+                margin-top: 5%;
+                .house_bio {
+                    gap: 5vw;
+                    .location {
+                        font-size: 28px;
+                    }
+                    .address, .price, .category {
+                        font-size: 23px;
+                    }
+                    p {
+                        font-size: 23px;
+                        .icon {
+                            font-size: 35px;
+                        }
+                    }
+                }
+                .reserve_box {
+                    margin-top: 50px;
+                    button {
+                        padding: 10px;
+                        width: 200px;
+                        font-size: 25px;
+                    }
+                }
             }
         }
         .house_map {
@@ -129,24 +196,13 @@
             .title {
                 padding: 15px;
                 h3 {
-                    font-size: 20px;
+                    font-size: 30px;
                 }
             }
             .map {
                 width: 90%;
                 .maps_content {
                     height: 450px;
-                    .popup {
-                        width: 170px;
-                        height: 130px;
-                        h5 {
-                            font-size: 11px;
-                        }
-                        img {
-                            width: 170px;
-                            height: 113px;
-                        }
-                    }
                 }
             }
         }
@@ -154,13 +210,50 @@
 
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1130px) {
 
     .house_container {
         min-height: 81vh;
-        .title {
-            h1 {
-                font-size: 35px;
+        .house_info {
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 20px;
+            .house_carousel {
+                width: 50%;
+                margin: auto;
+                height: 520px;
+                .carousel img {
+                    height: 520px;
+                    object-fit: cover;
+                }
+            }
+            .house {
+                width: 43%;
+                margin: auto;
+                margin-left: 7%;
+                .house_bio {
+                    gap: 2vw;
+                    .location {
+                        font-size: 25px;
+                    }
+                    .address, .price, .category {
+                        font-size: 20px;
+                    }
+                    p {
+                        font-size: 18px;
+                        .icon {
+                            font-size: 30px;
+                        }
+                    }
+                }
+                .reserve_box {
+                    margin-top: 50px;
+                    button {
+                        padding: 7px;
+                        width: 150px;
+                        font-size: 18px;
+                    }
+                }
             }
         }
         .house_map {
@@ -168,24 +261,13 @@
             .title {
                 padding: 20px;
                 h3 {
-                    font-size: 22px;
+                    font-size: 30px;
                 }
             }
             .map {
-                width: 90%;
+                width: 80%;
                 .maps_content {
-                    height: 450px;
-                    .popup {
-                        width: 170px;
-                        height: 130px;
-                        h5 {
-                            font-size: 11px;
-                        }
-                        img {
-                            width: 170px;
-                            height: 113px;
-                        }
-                    }
+                    height: 600px;
                 }
             }
         }

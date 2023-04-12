@@ -19,7 +19,7 @@ export default function HouseMap({ house = [] }) {
             >
                 <GeolocateControl positionOptions={{ enableHighAccuracy: true }} trackUserLocation={true}/>
 
-                <Marker key={house.id} latitude={house.latitude} longitude={house.longitude} color={"#008f88"}/>
+                <Marker key={house.id} latitude={house.latitude} longitude={house.longitude} color={"#ff385c"}/>
             </Map>
         </div>
     );

@@ -9,6 +9,13 @@ import HouseMap from '../../components/Client/Map/HouseMap';
 import CarouselHouseImages from '../../components/Carousel/CarouselHouseImages';
 import secrets from '../../secrets';
 
+// import { MdOutlineBathroom } from 'react-icons/fa';
+import { MdOutlineBathroom, MdOutlineBedroomParent, MdPool } from "react-icons/md";
+import { AiOutlineEuro, AiOutlineWifi, AiFillCar } from "react-icons/ai";
+import { IoLocationSharp } from "react-icons/io5";
+import { TbHomeDollar } from "react-icons/tb";
+
+
 export default function HouseDetails ({ }) {
     const navigate = useNavigate();
     const { id } = useParams();
@@ -20,7 +27,12 @@ export default function HouseDetails ({ }) {
 
     // console.log(oneHouseImages.main_image);
 
+    const category = oneHouse.category === 1 ? 'For sale' : oneHouse.category === 2 ? 'Rent' : 'Vacational rent';
+    const action = oneHouse.category === 3 ? 'Reserve' : 'Contact';
     const price_type = oneHouse.category === 1 ? '€' : oneHouse.category === 2 ? '€/month' : '€/night';
+    const wifi = oneHouseServices.wifi == true ? false : true;
+    const pool = oneHouseServices.pool == true ? false : true;
+    const parking = oneHouseServices.parking == true ? false : true;
 
     return (
         oneHouse === '' ? <SpinnerLoading/> :
@@ -32,14 +44,22 @@ export default function HouseDetails ({ }) {
                 <div className="house_carousel">
                     <CarouselHouseImages images_list={oneHouseImages.images_list}/>
                 </div>
-                <div className="house_bio">
-                    <p>{oneHouse.location}, {oneHouse.country}</p>
-                    <p>{oneHouse.price}{price_type}</p>
-                    <p>{oneHouse.id}</p>
-                    {/* <img src={oneHouseImages.main_image}/> */}
-                    {/* <img src={`${secrets.URL_BACKEND}${oneHouseImages.main_image}`}/> */}
-                    <p>{oneHouseServices.rooms}</p>
-                    <p>{oneHouseServices.bathrooms}</p>
+                <div className="house">
+                    <div className="house_bio">
+                        <p className='location'>{oneHouse.location}, {oneHouse.country}</p>
+                        <p className='category'><TbHomeDollar className='icon me-2'/>{category}</p>
+                        <p className='price'><AiOutlineEuro className='icon me-2'/>{oneHouse.price}{price_type}</p>
+                        <p className='address'><IoLocationSharp className='icon me-1'/>{oneHouse.address}</p>
+                        <p className='rooms'><MdOutlineBedroomParent className='icon me-2'/>{oneHouseServices.rooms}</p>
+                        <p className='bathrooms'><MdOutlineBathroom className='icon me-2'/>{oneHouseServices.bathrooms}</p>
+                        <p className='wifi' hidden={wifi}><AiOutlineWifi className='icon me-2'/>Wifi</p>
+                        <p className='pool' hidden={pool}><MdPool className='icon me-2'/>Pool</p>
+                        <p className='parking' hidden={parking}><AiFillCar className='icon me-2'/>Parking</p>
+                        <p></p>
+                    </div>
+                    <div className="reserve_box">
+                        <button type="button" className="reserve_button">{action}</button>
+                    </div>
                 </div>
             </div>
 

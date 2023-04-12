@@ -15,7 +15,7 @@ export default function StationsMap({ houses = [], setShow }) {
         <div className="maps_content">
             <Map
                 mapboxAccessToken="pk.eyJ1Ijoic2FsbXUxMCIsImEiOiJjbGRqNmZpZ2wxbDM5M3BwaXBmZXNpaGR3In0.6uyL22hZV1D-Z0yiM-hgew"
-                initialViewState={{ longitude: -3.7360987714758553, latitude: 40.10684911744036, zoom: 5.2 }}
+                initialViewState={{ longitude: -3.7360987714758553, latitude: 40.10684911744036, zoom: 4.5 }}
                 mapStyle="mapbox://styles/mapbox/streets-v11"
             >
                 <GeolocateControl positionOptions={{ enableHighAccuracy: true }} trackUserLocation={true}/>

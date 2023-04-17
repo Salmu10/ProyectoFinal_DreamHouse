@@ -75,7 +75,7 @@ export default function Houses() {
                     <div className="buttons_box_responsive">
                         <button type="button" className={mapView ? 'list' : 'list-active'} onClick={() => list_view()}>List</button>
                         <button type="button" className={mapView ? 'map-active' : 'map'} onClick={() => map_view()}>Map</button>
-                        <button type="button" className="filters_button" data-bs-toggle="modal" data-bs-target="#exampleModal">Filters</button>
+                        <button type="button" className="filters_button" data-bs-toggle="modal" data-bs-target="#filtersModal">Filters</button>
                     </div>
                 <div className='filters_container'>
                     <Filters apply_filters={apply_filters} delete_filters={delete_filters} filters={filters} mapShow={mapView}/>
@@ -90,7 +90,7 @@ export default function Houses() {
                     </div>
                 </div>
             </div>
-            <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="filtersModal" tabIndex="-1" role="dialog" aria-labelledby="filtersModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div className="modal-content">
                         <div className="modal-header">

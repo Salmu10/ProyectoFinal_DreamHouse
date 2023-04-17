@@ -7,7 +7,7 @@ import { useHouses } from "../../hooks/useHouses";
 import SpinnerLoading from "../../components/SpinnerLoading/SpinnerLoading";
 import HouseMap from '../../components/Client/Map/HouseMap';
 import CarouselHouseImages from '../../components/Carousel/CarouselHouseImages';
-import secrets from '../../secrets';
+import VacationalRentModal from '../../components/Client/Rent/VacationalRentModal';
 
 // import { MdOutlineBathroom } from 'react-icons/fa';
 import { MdOutlineBathroom, MdOutlineBedroomParent, MdPool } from "react-icons/md";
@@ -15,8 +15,8 @@ import { AiOutlineEuro, AiOutlineWifi, AiFillCar } from "react-icons/ai";
 import { IoLocationSharp } from "react-icons/io5";
 import { TbHomeDollar } from "react-icons/tb";
 
-
 export default function HouseDetails ({ }) {
+
     const navigate = useNavigate();
     const { id } = useParams();
     const { oneHouse, oneHouseServices, oneHouseImages, getOneHouse } = useHouses();
@@ -25,10 +25,10 @@ export default function HouseDetails ({ }) {
         getOneHouse(id);
     }, [])
 
-    // console.log(oneHouseImages.main_image);
-
     const category = oneHouse.category === 1 ? 'For sale' : oneHouse.category === 2 ? 'Rent' : 'Vacational rent';
-    const action = oneHouse.category === 3 ? 'Reserve' : 'Contact';
+    const action = oneHouse.category === 3 ? <button type="button" className="reserve_button" data-bs-toggle="modal" data-bs-target="#reserveModal">Reserve</button>
+        : <button type="button" className="reserve_button" >Contact</button>;
+    const modal_type = oneHouse.category === 3 ? <VacationalRentModal house={oneHouse}/> : '';
     const price_type = oneHouse.category === 1 ? '€' : oneHouse.category === 2 ? '€/month' : '€/night';
     const wifi = oneHouseServices.wifi == true ? false : true;
     const pool = oneHouseServices.pool == true ? false : true;
@@ -37,9 +37,6 @@ export default function HouseDetails ({ }) {
     return (
         oneHouse === '' ? <SpinnerLoading/> :
         <div className="house_container">
-            {/* <div className="title">
-                <h1>House details</h1>
-            </div> */}
             <div className="house_info">
                 <div className="house_carousel">
                     <CarouselHouseImages images_list={oneHouseImages.images_list}/>
@@ -58,11 +55,12 @@ export default function HouseDetails ({ }) {
                         <p></p>
                     </div>
                     <div className="reserve_box">
-                        <button type="button" className="reserve_button">{action}</button>
+                        {action}
+                        {/* <button type="button" className="reserve_button" data-bs-toggle="modal" data-bs-target="#reserveModal">{action}</button> */}
                     </div>
                 </div>
             </div>
-
+            {modal_type}
             <div className="house_map">
                 <div className="title">
                     <h3>House location</h3>
@@ -71,6 +69,8 @@ export default function HouseDetails ({ }) {
                     <HouseMap house={oneHouse}/>
                 </div>
             </div>
+
+
         </div>
     )
 }

@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'dreamhouse.app.houses',
     'dreamhouse.app.users',
+    'dreamhouse.app.reserves',
 ]
 
 MIDDLEWARE = [

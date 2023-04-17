@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('dreamhouse.app.houses.urls')),
     path('api/', include('dreamhouse.app.users.urls')),
+    path('api/', include('dreamhouse.app.reserves.urls')),
 ]
 
 if settings.DEBUG:

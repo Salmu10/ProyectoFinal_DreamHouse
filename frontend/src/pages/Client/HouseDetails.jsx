@@ -1,8 +1,6 @@
 import './HouseDetails.scss';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-
 import { useHouses } from "../../hooks/useHouses";
 import SpinnerLoading from "../../components/SpinnerLoading/SpinnerLoading";
 import HouseMap from '../../components/Client/Map/HouseMap';
@@ -10,7 +8,6 @@ import CarouselHouseImages from '../../components/Carousel/CarouselHouseImages';
 import VacationalRentModal from '../../components/Client/Rent/VacationalRentModal';
 import ContactModal from '../../components/Client/Rent/ContactModal';
 
-// import { MdOutlineBathroom } from 'react-icons/fa';
 import { MdOutlineBathroom, MdOutlineBedroomParent, MdPool } from "react-icons/md";
 import { AiOutlineEuro, AiOutlineWifi, AiFillCar } from "react-icons/ai";
 import { IoLocationSharp } from "react-icons/io5";
@@ -18,7 +15,6 @@ import { TbHomeDollar } from "react-icons/tb";
 
 export default function HouseDetails ({ }) {
 
-    const navigate = useNavigate();
     const { id } = useParams();
     const { oneHouse, oneHouseServices, oneHouseImages, getOneHouse } = useHouses();
 
@@ -57,7 +53,6 @@ export default function HouseDetails ({ }) {
                     </div>
                     <div className="reserve_box">
                         {action}
-                        {/* <button type="button" className="reserve_button" data-bs-toggle="modal" data-bs-target="#reserveModal">{action}</button> */}
                     </div>
                 </div>
             </div>
@@ -70,8 +65,6 @@ export default function HouseDetails ({ }) {
                     <HouseMap house={oneHouse}/>
                 </div>
             </div>
-
-
         </div>
     )
 }

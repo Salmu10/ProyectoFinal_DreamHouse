@@ -7,8 +7,11 @@ const ReserveService = {
     },
 
     createReserve(data) {
-        // console.log(data);
         return api().post("reserve", { 'reserve': data });
+    },
+
+    sendEmail(data) {
+        return api().post("send_email", { 'mail': data });
     },
     
 };

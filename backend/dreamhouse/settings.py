@@ -5,7 +5,6 @@ from environ import Env
 env = Env()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-print(BASE_DIR)
 env.read_env(os.path.join(BASE_DIR+'/dreamhouse', '.env'))
 
 # Quick-start development settings - unsuitable for production
@@ -21,6 +20,15 @@ ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost', '172.20.10.3', '192.168.0.
 
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = ('http://localhost:3000', 'http://172.20.10.3:3000', 'http://192.168.0.26:3000')
+
+# MAILGUN
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 # Application definition
 

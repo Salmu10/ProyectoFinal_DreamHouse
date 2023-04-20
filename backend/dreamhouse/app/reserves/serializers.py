@@ -48,17 +48,10 @@ class ReserveSerializer(serializers.ModelSerializer):
         return reserve
         # return 'Hola'
 
-    def getHouseReserves(context):
-        username = context['username']
-
-        user = User.objects.get(username=username)
-
-        if user is None:
-            raise serializers.ValidationError('User not found')
-
-        # rent = Rent.objects.get(user_id=user.id, end_slot_id=None)
-        # return rent
-        return 'hola'
+    def getHouseReserves(house_id):
+        reserves = Reserve.objects.filter(house_id=house_id)
+        books = [{'from': reserve.initial_date, 'to': reserve.end_date} for reserve in reserves]
+        return books
 
     def delete(context):
         reserve_id = context['reserve_id']

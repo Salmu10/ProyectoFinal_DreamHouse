@@ -14,6 +14,7 @@ django-environ = "*"
 pymysql = "*"
 pillow = "*"
 mysqlclient = "*"
+requests = "*"
 
 [dev-packages]
 

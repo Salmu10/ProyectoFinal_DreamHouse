@@ -7,13 +7,13 @@ export function useReserve() {
     const [houseReserves, setHouseReserves] = useState([]);
 
     const getHouseReserves = useCallback((house_id) => {
-        console.log(house_id);
         ReserveService.getHouseReserves(house_id)
             .then(({data}) => {
-                console.log(data);
+                setHouseReserves(data);
+                // console.log(data);
             })
             .catch(e => console.error(e));
-    }, []);
+    }, [houseReserves]);
 
     const makeReserve = useCallback((house_id, startdate, enddate, reservePrice) => {
 
@@ -26,11 +26,24 @@ export function useReserve() {
 
         ReserveService.createReserve(data)
             .then(({data}) => {
+                setReserves(data);
+                toast.success("The reserve has been made successfully");
                 console.log(data);
             })
             .catch(e => console.error(e));
     }, []);
 
-    return { reserves, setReserves, houseReserves, setHouseReserves, getHouseReserves, makeReserve }
+    const sendEmail = useCallback((data) => {
+        ReserveService.sendEmail(data)
+            .then(({data, status}) => {
+                console.log(data);
+                if (status === 200) {
+                    toast.success(data.data);
+                }
+            })
+            .catch(e => console.error(e));
+    }, []);
+
+    return { reserves, setReserves, houseReserves, setHouseReserves, getHouseReserves, makeReserve, sendEmail }
 
 }

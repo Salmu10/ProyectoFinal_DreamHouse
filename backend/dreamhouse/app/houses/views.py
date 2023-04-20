@@ -16,12 +16,12 @@ from dreamhouse.app.core.permissions import IsAdmin
 
 class CategoryView(viewsets.GenericViewSet):
 
-    # def get_permissions(self):
-    #     if self.request.method == 'GET':
-    #         self.permission_classes = [AllowAny]
-    #     else:
-    #         self.permission_classes = [IsAuthenticated, IsAdmin]
-    #     return super(CategoryView, self).get_permissions()
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            self.permission_classes = [AllowAny]
+        else:
+            self.permission_classes = [IsAuthenticated, IsAdmin]
+        return super(CategoryView, self).get_permissions()
 
     def getCategories(self, request):
         categories = Category.objects.all()
@@ -55,23 +55,15 @@ class CategoryView(viewsets.GenericViewSet):
     
 class HouseView(viewsets.GenericViewSet):
 
-    # def get_permissions(self):
-    #     if self.request.method == 'GET':
-    #         self.permission_classes = [AllowAny]
-    #     else:
-    #         self.permission_classes = [IsAuthenticated, IsAdmin]
-    #     return super(CategoryView, self).get_permissions()
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            self.permission_classes = [AllowAny]
+        else:
+            self.permission_classes = [IsAuthenticated, IsAdmin]
+        return super(HouseView, self).get_permissions()
 
     def getHouses(self, request):
         houses = House.objects.all()
-        # if request.GET.get is None:
-        #     print('hola')
-        #     houses = House.objects.all()
-        # else:
-        #     # filters = dict(request.GET.get(x))
-        #     filters = {x:request.GET.get(x) for x in request.GET.keys()}
-        #     houses = HouseSerializer.getHousesFiltered(filters_context=filters)
-           
         houses_serializer = HouseSerializer(houses, many=True)
         return Response(houses_serializer.data)
     
@@ -86,7 +78,6 @@ class HouseView(viewsets.GenericViewSet):
         houses_serializer = HouseSerializer(houses['houses'], many=True)
         context = {'houses': houses_serializer.data, 'total_houses': houses['total_houses']}
         return Response(context)
-        # return Response(houses_serializer.data)
     
     def post(self, request):
         username = request.user
@@ -142,7 +133,6 @@ class HouseImagesView(viewsets.GenericViewSet):
     def getOneHouseImages(self, request, id):
         house = House.objects.get(pk=id)
         main_image = house.image.url
-        # main_image = [{'image_url': image.image.url} for image in house]
         house_images = HouseImages.objects.filter(house_id=id)
         images_list = [{'id': image.id, 'image_url': image.image.url} for image in house_images]
         return Response({ 'main_image': main_image, 'images_list': images_list})

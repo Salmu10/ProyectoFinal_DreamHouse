@@ -9,21 +9,28 @@ import 'react-day-picker/dist/style.css';
 export default function VacationalRentModal({ house }) {
 
     const navigate = useNavigate();
-    const { user, isAuth, isAdmin, logout } = useContext(AuthContext);
+    const { user, isAuth } = useContext(AuthContext);
     const { houseReserves, getHouseReserves, makeReserve } = useReserve();
     const [range, setRange] = useState([]);
     const [reservePrice, setReservePrice] = useState(0);
 
-    // const testdates = {from: new Date(2023, 3, 20), to: new Date(2023, 3, 25)};
-    const disabledDays = [{ from: new Date(), to: new Date(0, 1, 1) }];
+    const [booked, setBooked] = useState(false);
+
+    const bookedStyle = { backgroundColor: 'red', opacity: 1, color: "white"};
+
+    const disabledDays = [{from: new Date(), to: new Date(0, 1, 1)}];
+    const bookedDays = [];
 
     useEffect(function () {
         if (house.id) {
             getHouseReserves(house.id);
         }
-    }, [])
+    }, [house])
 
     useEffect(function () {
+        if (house.id) {
+            getHouseReserves(house.id);
+        }
         if (range?.from) {
             if (!range.to) {
               setReservePrice(0);
@@ -51,11 +58,28 @@ export default function VacationalRentModal({ house }) {
                 const enddate = format(range.to, 'y-MM-dd');
                 makeReserve(id, startdate, enddate, reservePrice);
                 setRange('');
+                navigate('/home');
             }
         }
     }
 
-    console.log(houseReserves);
+    if (houseReserves != '') {
+        houseReserves.map((fecha) => {
+            const num = fecha.from.split('-');
+            const num2 = fecha.to.split('-');
+            num[1] = num[1] - 1;
+            num2[1] = num2[1] - 1;
+            
+            let days = {};
+            days = {
+                from: new Date(num[0], num[1], num[2]),
+                to: new Date(num2[0], num2[1], num2[2]),
+            };
+            
+            disabledDays.push(days);
+            bookedDays.push(days);
+        })
+    }
 
     return (
         <div className="modal fade" id="reserveModal" tabIndex="-1" role="dialog" aria-labelledby="reserveModalLabel" aria-hidden="true">
@@ -68,6 +92,8 @@ export default function VacationalRentModal({ house }) {
                     <div className="modal-body">
                         <div className="container-fluid">
                             <div className='datepicker'>
+                                {/* <DayPicker defaultMonth={new Date()} numberOfMonths={1} mode="range" disabled={disabledDays} modifiers={{ booked: bookedDays }} 
+                                modifiersStyles={{ booked: bookedStyle }} min={2} max={31} selected={range} onSelect={setRange}/> */}
                                 <DayPicker defaultMonth={new Date()} numberOfMonths={1} mode="range" disabled={disabledDays} min={2} max={31} selected={range} onSelect={setRange}/>
                             </div>
                             <div className="price_box">

@@ -8,6 +8,7 @@ import SpinnerLoading from "../../components/SpinnerLoading/SpinnerLoading";
 import HouseMap from '../../components/Client/Map/HouseMap';
 import CarouselHouseImages from '../../components/Carousel/CarouselHouseImages';
 import VacationalRentModal from '../../components/Client/Rent/VacationalRentModal';
+import ContactModal from '../../components/Client/Rent/ContactModal';
 
 // import { MdOutlineBathroom } from 'react-icons/fa';
 import { MdOutlineBathroom, MdOutlineBedroomParent, MdPool } from "react-icons/md";
@@ -27,8 +28,8 @@ export default function HouseDetails ({ }) {
 
     const category = oneHouse.category === 1 ? 'For sale' : oneHouse.category === 2 ? 'Rent' : 'Vacational rent';
     const action = oneHouse.category === 3 ? <button type="button" className="reserve_button" data-bs-toggle="modal" data-bs-target="#reserveModal">Reserve</button>
-        : <button type="button" className="reserve_button" >Contact</button>;
-    const modal_type = oneHouse.category === 3 ? <VacationalRentModal house={oneHouse}/> : '';
+        : <button type="button" className="reserve_button" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</button>;
+    const modal_type = oneHouse.category === 3 ? <VacationalRentModal house={oneHouse}/> : <ContactModal house={oneHouse}/>;
     const price_type = oneHouse.category === 1 ? '€' : oneHouse.category === 2 ? '€/month' : '€/night';
     const wifi = oneHouseServices.wifi == true ? false : true;
     const pool = oneHouseServices.pool == true ? false : true;

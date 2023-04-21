@@ -23,7 +23,6 @@ export default function Filters({ apply_filters, delete_filters, filters, mapSho
     }
 
     const filter = data => {
-        console.log(data.min_price);
         filters = { page: 1, limit: 6 };
         if (data.category != '') {
             filters.category = data.category;

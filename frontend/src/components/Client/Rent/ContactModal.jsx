@@ -20,16 +20,10 @@ export default function ContactModal({ house }) {
 
     const { register, handleSubmit, setValue, formState: { errors } } = useForm({ resolver: yupResolver(validators) });
 
-    useEffect(function () {
-
-    }, [])
-
     const onSubmit = data => {
-        console.log(data);
         if (!isAuth) {
             navigate('/login');
         } else {
-            console.log(house.user_id);
             data.house_owner = house.user_id;
             data.user = user.email;
             console.log(user.email);

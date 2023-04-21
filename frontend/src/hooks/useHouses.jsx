@@ -8,7 +8,7 @@ export function useHouses() {
     const [oneHouse, setOneHouse] = useState({});
     const [oneHouseServices, setOneHouseServices] = useState({});
     const [oneHouseImages, setOneHouseImages] = useState({});
-    // const [housesFiltered, setHousesFiltered] = useState([]);
+    const [userHouses, setUserHouses] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [isCorrect, setIsCorrect] = useState(false);
 
@@ -53,6 +53,15 @@ export function useHouses() {
             .catch(e => console.error(e));
     }, []);
 
+    const getUserHouses = useCallback((user_id) => {
+        HouseService.getUserHouses(user_id)
+            .then(({data}) => {
+                console.log(data);
+                setUserHouses(data);
+            })
+            .catch(e => console.error(e));
+    }, []);
+
     const addHouse = useCallback((formData) => {
         HouseService.createHouse(formData)
             .then(({ data, status }) => {
@@ -92,19 +101,18 @@ export function useHouses() {
     }, []);
 
     const deleteHouse = (id) => {
-        console.log(id);
-        // StationService.deleteStation(slug)
-        // .then(({ data, status }) => {
-        //     if (status === 200) {
-        //         toast.success(data.data);
-        //         setStations(stations.filter(station => station.slug !== slug));
-        //     }
-        // })
-        // .catch(e => console.error(e));
+        HouseService.deleteHouse(id)
+            .then(({ data, status }) => {
+                if (status === 200) {
+                    toast.success(data.data);
+                    setHouses(houses.filter(house => house.id !== id));
+                }
+            })
+            .catch(e => console.error(e));
     }
 
 
-    return { isCorrect, houses, setHouses, oneHouse, setOneHouse, oneHouseServices, setOneHouseServices, oneHouseImages , setOneHouseImages, 
-        totalPages, setTotalPages, getOneHouse, getHousesFiltered, getOneHouseImages, addHouse, updateHouse, deleteHouse }
+    return { isCorrect, houses, setHouses, oneHouse, setOneHouse, oneHouseServices, setOneHouseServices, oneHouseImages, setOneHouseImages, 
+        userHouses, setUserHouses, totalPages, setTotalPages, getOneHouse, getHousesFiltered, getOneHouseImages, getUserHouses, addHouse, updateHouse, deleteHouse }
 
 }

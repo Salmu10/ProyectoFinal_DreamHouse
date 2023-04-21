@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import HousesForm from "../../../components/Admin/House/HousesForm";
+import HousesForm from "../../../components/Client/Houses/HousesAddForm";
 import { useHouses } from "../../../hooks/useHouses";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";

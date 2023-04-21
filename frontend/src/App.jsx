@@ -33,15 +33,8 @@ const HousesAdd = React.lazy(() => import('./pages/Admin/House/HousesAdd'));
 const HousesUpdate = React.lazy(() => import('./pages/Admin/House/HousesUpdate'));
 const HouseDetails = React.lazy(() => import('./pages/Client/HouseDetails'));
 
-// const ScootersList = React.lazy(() => import('./pages/Admin/Scooter/ScootersList'));
-// const ScootersAdd = React.lazy(() => import('./pages/Admin/Scooter/ScootersAdd'));
-// const ScootersUpdate = React.lazy(() => import('./pages/Admin/Scooter/ScootersUpdate'));
-
-// const UsersList = React.lazy(() => import('./pages/Admin/User/UsersList'));
-// const RentsList = React.lazy(() => import('./pages/Admin/Rent/RentsList'));
-// const IncidentsList = React.lazy(() => import('./pages/Admin/Incidence/IncidentsList'));
-
 const Profile = React.lazy(() => import('./pages/Client/Profile'));
+const HousesClientAdd = React.lazy(() => import('./pages/Client/HousesAddClient'));
 
 function App() {
   return (
@@ -74,6 +67,7 @@ function App() {
 
                     <Route element={<AuthGuard/>}>
                       <Route path="/profile/:id" element={<Profile/>}/>
+                      <Route path="/profile/houses/add" element={<HousesClientAdd/>}/>
                     </Route>
                   </Routes>
                 <Footer/>

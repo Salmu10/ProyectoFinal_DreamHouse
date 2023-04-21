@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 export function useReserve() {
     const [reserves, setReserves] = useState([]);
     const [houseReserves, setHouseReserves] = useState([]);
+    const [userReserves, setUserReserves] = useState([]);
 
     const getHouseReserves = useCallback((house_id) => {
         ReserveService.getHouseReserves(house_id)
@@ -15,8 +16,15 @@ export function useReserve() {
             .catch(e => console.error(e));
     }, [houseReserves]);
 
-    const makeReserve = useCallback((house_id, startdate, enddate, reservePrice) => {
+    const getUserReserves = useCallback((user_id) => {
+        ReserveService.getUserReserves(user_id)
+            .then(({data}) => {
+                setUserReserves(data);
+            })
+            .catch(e => console.error(e));
+    }, []);
 
+    const makeReserve = useCallback((house_id, startdate, enddate, reservePrice) => {
         let data = {
             house_id: house_id,
             initial_date: startdate,
@@ -44,6 +52,6 @@ export function useReserve() {
             .catch(e => console.error(e));
     }, []);
 
-    return { reserves, setReserves, houseReserves, setHouseReserves, getHouseReserves, makeReserve, sendEmail }
+    return { reserves, setReserves, houseReserves, setHouseReserves, userReserves, setUserReserves, getHouseReserves, getUserReserves, makeReserve, sendEmail }
 
 }

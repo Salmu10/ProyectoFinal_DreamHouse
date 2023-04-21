@@ -40,8 +40,8 @@ export default function Header () {
                     </button>
                     <div className="navbar_list collapse navbar-collapse" id="headerNav">
                         <ul className="nav_list navbar-nav">
-                            <li className="link nav-link" onClick={() => redirects.home()}>Home</li>
-                            <li className="link nav-link" onClick={() => redirects.houses()}>Houses</li>
+                            {/* <li className="link nav-link" onClick={() => redirects.home()}>Home</li> */}
+                            {/* <li className="link nav-link" onClick={() => redirects.houses()}>Houses</li> */}
                             {isAdminUser}
                             {isUsername}
                             {isUser} 

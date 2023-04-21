@@ -6,6 +6,10 @@ const ReserveService = {
         return api().get(`reserve/${house_id}`);
     },
 
+    getUserReserves(user_id) {
+        return api().get(`user_reserves/${user_id}`);
+    },
+
     createReserve(data) {
         return api().post("reserve", { 'reserve': data });
     },

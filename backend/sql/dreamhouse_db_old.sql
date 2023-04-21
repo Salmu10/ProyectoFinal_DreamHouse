@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-04-2023 a las 18:01:16
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.0.13
+-- Tiempo de generación: 11-04-2023 a las 17:22:41
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `auth_group` (
   `id` int(11) NOT NULL,
   `name` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -42,7 +42,7 @@ CREATE TABLE `auth_group_permissions` (
   `id` bigint(20) NOT NULL,
   `group_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -55,7 +55,7 @@ CREATE TABLE `auth_permission` (
   `name` varchar(255) NOT NULL,
   `content_type_id` int(11) NOT NULL,
   `codename` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `auth_permission`
@@ -105,11 +105,7 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (41, 'Can add profile', 11, 'add_profile'),
 (42, 'Can change profile', 11, 'change_profile'),
 (43, 'Can delete profile', 11, 'delete_profile'),
-(44, 'Can view profile', 11, 'view_profile'),
-(45, 'Can add reserve', 12, 'add_reserve'),
-(46, 'Can change reserve', 12, 'change_reserve'),
-(47, 'Can delete reserve', 12, 'delete_reserve'),
-(48, 'Can view reserve', 12, 'view_reserve');
+(44, 'Can view profile', 11, 'view_profile');
 
 -- --------------------------------------------------------
 
@@ -126,7 +122,7 @@ CREATE TABLE `django_admin_log` (
   `change_message` longtext NOT NULL,
   `content_type_id` int(11) DEFAULT NULL,
   `user_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -138,7 +134,7 @@ CREATE TABLE `django_content_type` (
   `id` int(11) NOT NULL,
   `app_label` varchar(100) NOT NULL,
   `model` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `django_content_type`
@@ -153,7 +149,6 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (7, 'houses', 'house'),
 (9, 'houses', 'houseimages'),
 (8, 'houses', 'houseservices'),
-(12, 'reserves', 'reserve'),
 (5, 'sessions', 'session'),
 (11, 'users', 'profile'),
 (10, 'users', 'user');
@@ -169,7 +164,7 @@ CREATE TABLE `django_migrations` (
   `app` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `django_migrations`
@@ -198,8 +193,7 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (20, 'sessions', '0001_initial', '2023-04-03 18:50:43.216219'),
 (21, 'users', '0002_user_groups_user_is_superuser_user_user_permissions', '2023-04-03 18:50:43.849010'),
 (22, 'users', '0003_profile', '2023-04-03 18:50:43.984154'),
-(23, 'users', '0004_alter_profile_biography', '2023-04-03 18:50:43.999160'),
-(24, 'reserves', '0001_initial', '2023-04-18 15:20:34.046734');
+(23, 'users', '0004_alter_profile_biography', '2023-04-03 18:50:43.999160');
 
 -- --------------------------------------------------------
 
@@ -211,7 +205,7 @@ CREATE TABLE `django_session` (
   `session_key` varchar(40) NOT NULL,
   `session_data` longtext NOT NULL,
   `expire_date` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -224,7 +218,7 @@ CREATE TABLE `houses_category` (
   `slug` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
   `image` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `houses_category`
@@ -252,7 +246,7 @@ CREATE TABLE `houses_house` (
   `longitude` decimal(30,20) NOT NULL,
   `category_id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `houses_house`
@@ -276,7 +270,7 @@ CREATE TABLE `houses_houseimages` (
   `id` bigint(20) NOT NULL,
   `image` varchar(100) NOT NULL,
   `house_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `houses_houseimages`
@@ -324,7 +318,7 @@ CREATE TABLE `houses_houseservices` (
   `wifi` tinyint(1) NOT NULL,
   `parking` tinyint(1) NOT NULL,
   `house_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `houses_houseservices`
@@ -341,31 +335,6 @@ INSERT INTO `houses_houseservices` (`id`, `rooms`, `bathrooms`, `pool`, `wifi`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `reserves_reserve`
---
-
-CREATE TABLE `reserves_reserve` (
-  `id` bigint(20) NOT NULL,
-  `initial_date` date NOT NULL,
-  `end_date` date NOT NULL,
-  `total_price` int(11) NOT NULL,
-  `house_id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `reserves_reserve`
---
-
-INSERT INTO `reserves_reserve` (`id`, `initial_date`, `end_date`, `total_price`, `house_id`, `user_id`) VALUES
-(1, '2023-04-19', '2023-04-22', 900, 1, 1),
-(2, '2023-04-26', '2023-04-29', 900, 1, 1),
-(3, '2023-06-20', '2023-06-23', 900, 1, 1),
-(4, '2023-04-19', '2023-04-21', 500, 4, 1);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `users_profile`
 --
 
@@ -376,7 +345,7 @@ CREATE TABLE `users_profile` (
   `image` varchar(100) NOT NULL,
   `biography` varchar(100) NOT NULL,
   `user_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users_profile`
@@ -402,16 +371,16 @@ CREATE TABLE `users_user` (
   `type` varchar(10) NOT NULL,
   `last_login` datetime(6) DEFAULT NULL,
   `is_superuser` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users_user`
 --
 
 INSERT INTO `users_user` (`id`, `uuid`, `username`, `email`, `password`, `type`, `last_login`, `is_superuser`) VALUES
-(1, '59257605-52a0-0fa8-42be-622fa9254781', 'salmu10', 'salmu10@gmail.com', 'pbkdf2_sha256$600000$W2Je8ViDc9DR59ACytGttR$NFjGlT7y8f5biI1WK4vvI1ywXmbPvMgilWRaTERHCkg=', 'client', NULL, 0),
+(1, '59257605-52a0-0fa8-42be-622fa9254781', 'salmu10', 'salmu10@gmail.com', 'pbkdf2_sha256$390000$XJFr4McSZEBmjmadqMezRr$KNb1hL/CZznhyvsUve1LrcVaBB4wygrkXN6GtYPcZ4M=', 'client', NULL, 0),
 (2, '31c773de-d2e1-b461-0b30-1260294270ad', 'salvamu10', 'salvamu10@gmail.com', 'pbkdf2_sha256$390000$2KbUwEHc9n3ZRAmEjD6tnb$VV8xT21TArWAdf/Pe1EmXaohfqrn3Pkf1EMuQqW8nXs=', 'client', NULL, 0),
-(3, 'f5d2062e-93bd-c55b-00ad-2fda8af32e11', 'salva', 'salmu1997@gmail.com', 'pbkdf2_sha256$600000$vDGaJ9b9vXe6zAUIfqcW2F$RGBC1GvhO92c6rHAseBBSZx8UhSub+NqadrgTYI2dTU=', 'admin', NULL, 0);
+(3, 'f5d2062e-93bd-c55b-00ad-2fda8af32e11', 'salva', 'salva@gmail.com', 'pbkdf2_sha256$600000$vDGaJ9b9vXe6zAUIfqcW2F$RGBC1GvhO92c6rHAseBBSZx8UhSub+NqadrgTYI2dTU=', 'admin', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -423,7 +392,7 @@ CREATE TABLE `users_user_groups` (
   `id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `group_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -435,7 +404,7 @@ CREATE TABLE `users_user_user_permissions` (
   `id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `permission_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tablas volcadas
@@ -521,14 +490,6 @@ ALTER TABLE `houses_houseservices`
   ADD KEY `houses_houseservices_house_id_a1397d07_fk_houses_house_id` (`house_id`);
 
 --
--- Indices de la tabla `reserves_reserve`
---
-ALTER TABLE `reserves_reserve`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `reserves_reserve_house_id_07704eb0_fk_houses_house_id` (`house_id`),
-  ADD KEY `reserves_reserve_user_id_1af3e36f_fk_users_user_id` (`user_id`);
-
---
 -- Indices de la tabla `users_profile`
 --
 ALTER TABLE `users_profile`
@@ -580,7 +541,7 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT de la tabla `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `django_admin_log`
@@ -592,13 +553,13 @@ ALTER TABLE `django_admin_log`
 -- AUTO_INCREMENT de la tabla `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `houses_category`
@@ -623,12 +584,6 @@ ALTER TABLE `houses_houseimages`
 --
 ALTER TABLE `houses_houseservices`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de la tabla `reserves_reserve`
---
-ALTER TABLE `reserves_reserve`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `users_profile`
@@ -696,13 +651,6 @@ ALTER TABLE `houses_houseimages`
 --
 ALTER TABLE `houses_houseservices`
   ADD CONSTRAINT `houses_houseservices_house_id_a1397d07_fk_houses_house_id` FOREIGN KEY (`house_id`) REFERENCES `houses_house` (`id`);
-
---
--- Filtros para la tabla `reserves_reserve`
---
-ALTER TABLE `reserves_reserve`
-  ADD CONSTRAINT `reserves_reserve_house_id_07704eb0_fk_houses_house_id` FOREIGN KEY (`house_id`) REFERENCES `houses_house` (`id`),
-  ADD CONSTRAINT `reserves_reserve_user_id_1af3e36f_fk_users_user_id` FOREIGN KEY (`user_id`) REFERENCES `users_user` (`id`);
 
 --
 -- Filtros para la tabla `users_profile`

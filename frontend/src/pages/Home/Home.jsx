@@ -12,10 +12,8 @@ export default function Home() {
     const [show, setShow] = useState(null);
 
     const apply_filters = (filters) => {
-        console.log(filters);
         const filters_url = btoa(JSON.stringify(filters));
         navigate('/houses/' + filters_url);
-        // getHousesFiltered(filters);
     }
 
     return (

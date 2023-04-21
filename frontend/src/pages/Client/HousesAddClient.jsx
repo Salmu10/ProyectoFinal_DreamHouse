@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
-import HousesForm from "../../../components/Client/Houses/HousesAddForm";
-import { useHouses } from "../../../hooks/useHouses";
+import HousesAddForm from "../../components/Client/Houses/HousesAddForm";
+import { useHouses } from "../../hooks/useHouses";
 import { useNavigate } from "react-router-dom";
 
-export default function HousesAdd({ }) {
+export default function HousesAddClient({ }) {
     const { isCorrect, addHouse } = useHouses();
-    const form_type = 'create';
     const navigate = useNavigate();
 
     useEffect(() => {
         if (isCorrect) {
-            navigate('/dashboard/houses');
+            navigate('/home');
         }
     }, [isCorrect, navigate]);
 
@@ -19,7 +18,7 @@ export default function HousesAdd({ }) {
             <div className="title">
                 <h1>Create House</h1>
             </div>
-            <HousesForm form_type={form_type} sendData={(formData) => addHouse(formData)}/>
+            <HousesAddForm sendData={(formData) => addHouse(formData)}/>
         </div>
     )
 }

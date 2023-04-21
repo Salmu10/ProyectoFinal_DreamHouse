@@ -58,7 +58,6 @@ export default function Houses() {
         getHousesFiltered(delete_filters);
         page = 1;
         filters = delete_filters;
-        // state.total_pages = usePaginate(delete_filters);
     }
     
     const apply_filters = (filters) => {
@@ -99,7 +98,6 @@ export default function Houses() {
                         </div>
                         <div className="modal-body">
                             <div className="container-fluid">
-                                {/* <p>holaaaaaaaaaaaas</p> */}
                                 <Filters apply_filters={apply_filters} delete_filters={delete_filters} filters={filters} mapShow={mapView}/>
                             </div>
                         </div>

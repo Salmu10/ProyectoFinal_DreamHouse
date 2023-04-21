@@ -28,6 +28,11 @@ class ReserveView(viewsets.GenericViewSet):
         serializer = ReserveSerializer.getHouseReserves(house_id=house_id)
         return Response(serializer)
 
+    def getUserReserves(self, request, user_id):
+        reserves = Reserve.objects.filter(user_id=user_id)
+        serializer = ReserveSerializer(reserves, many=True)
+        return Response(serializer.data)
+
     def reserve(self, request):
         username = request.user
         reserve = request.data.get('reserve')

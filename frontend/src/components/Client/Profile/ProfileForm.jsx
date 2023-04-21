@@ -3,12 +3,18 @@ import React, { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { useParams } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ReservesList from './ReservesList';
+import { useReserve } from "../../../hooks/useReserve";
+import { useHouses } from "../../../hooks/useHouses";
+import HousesList from "../../Client/Houses/HousesList";
+import { useNavigate } from "react-router-dom";
 
-const ProfileForm = ({user, profile, sendData, errorMSG}) => {
-    const { id } = useParams();
+export default function ProfileForm({user, profile, sendData, errorMSG}) {
+
+    const navigate = useNavigate();
     const [edit, setEdit] = useState(true);
+    const { userReserves, getUserReserves } = useReserve();
+    const { userHouses, getUserHouses } = useHouses();
 
     const validators = Yup.object().shape({
         username: Yup.string().required('*Username is required').min(3, '*Username must be between 3 and 15 characters').max(15, '*Username must be between 3 and 15 characters'),
@@ -32,15 +38,19 @@ const ProfileForm = ({user, profile, sendData, errorMSG}) => {
             setValue('image', profile.image);
             setValue('biography', profile.biography);
         }
+        getUserReserves(user.id);
+        getUserHouses(user.id);
     }, [user, profile]);
 
     const send_data = data => {
         sendData(data);
     };
 
-    // const notifications_html = notifications.length > 0 ?
-    //     notifications.map(item => <Notification notification={item} key={item.id}/>)
-    //     : <p>No Notifications</p>;
+    const redirects = {
+        add_house: () => navigate('/profile/houses/add'),
+    }
+
+    const reservess_html = userReserves.length > 0 ? userReserves.map(reserve => <ReservesList reserve={reserve} key={reserve.id}/>) : <p>No Reserves</p>;
 
     return (
         <div className='profile_page'>
@@ -88,8 +98,15 @@ const ProfileForm = ({user, profile, sendData, errorMSG}) => {
                     </div>
                 </div>
             </form>
+            {reservess_html}
+            <div className='houses'>
+                <div className="title">
+                    <h3>My houses</h3>
+                </div>
+                <button type="button" className="add_house btn btn-primary" onClick={() => redirects.add_house()}>Add your house</button>
+                <HousesList houses={userHouses}/>
+                {/* <HousesForm form_type={form_type} sendData={(formData) => addHouse(formData)}/> */}
+            </div>
         </div>
     )
 }
-
-export default ProfileForm;

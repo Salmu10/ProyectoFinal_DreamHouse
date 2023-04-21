@@ -79,6 +79,14 @@ class HouseView(viewsets.GenericViewSet):
         context = {'houses': houses_serializer.data, 'total_houses': houses['total_houses']}
         return Response(context)
     
+    def getUserHouses(self, request, user_id):
+        print(user_id)
+        houses = House.objects.filter(user_id=user_id)
+        serializer = HouseSerializer(houses, many=True)
+        print(houses)
+        return Response(serializer.data)
+        # return Response('Hola')
+    
     def post(self, request):
         username = request.user
         data = request.POST

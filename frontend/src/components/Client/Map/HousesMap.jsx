@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import Map, { GeolocateControl, Marker, Popup } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-// import "./HousesMap.scss";
+import secrets from '../../../secrets';
 import { useNavigate } from "react-router-dom";
 
 export default function StationsMap({ houses = [], setShow }) {
+
     const [markerIndex, setMarkerIndex] = useState(null);
     const navigate = useNavigate();
 
     const redirects = {
+        details: (id) => navigate('/house/' + id)
     }
 
     return (
@@ -40,10 +42,9 @@ export default function StationsMap({ houses = [], setShow }) {
                                 <h5>{houses[markerIndex].location}, {houses[markerIndex].country}</h5>
                             </div>
                             <div className='popup_image'>
-                                <img src="/assets/estacion.jpeg" alt='img'/> 
+                                <img src={`${secrets.URL_BACKEND}${houses[markerIndex].image}`}/>
+                                {/* <img src="/assets/estacion.jpeg" alt='img'/>  */}
                             </div>
-                            {/* {houses[markerIndex].slug} */}
-
                         </div>
                     </Popup>
                 )}

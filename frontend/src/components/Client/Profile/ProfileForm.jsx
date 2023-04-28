@@ -105,7 +105,6 @@ export default function ProfileForm({user, profile, sendData, errorMSG}) {
                 </div>
                 <button type="button" className="add_house btn btn-primary" onClick={() => redirects.add_house()}>Add your house</button>
                 <HousesList houses={userHouses}/>
-                {/* <HousesForm form_type={form_type} sendData={(formData) => addHouse(formData)}/> */}
             </div>
         </div>
     )

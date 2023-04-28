@@ -12,6 +12,15 @@ export function useHouses() {
     const [totalPages, setTotalPages] = useState(0);
     const [isCorrect, setIsCorrect] = useState(false);
 
+    const getAllHouses = useCallback(() => {
+        HouseService.getAllHouses()
+            .then(({data}) => {
+                // console.log(data);
+                setHouses(data);
+            })
+            .catch(e => console.error(e));
+    }, [houses]);
+
     const getOneHouse = useCallback((id) => {
         HouseService.getOneHouse(id)
             .then(({data}) => {
@@ -112,7 +121,7 @@ export function useHouses() {
     }
 
 
-    return { isCorrect, houses, setHouses, oneHouse, setOneHouse, oneHouseServices, setOneHouseServices, oneHouseImages, setOneHouseImages, 
+    return { isCorrect, houses, setHouses, oneHouse, setOneHouse, oneHouseServices, setOneHouseServices, oneHouseImages, setOneHouseImages, getAllHouses,
         userHouses, setUserHouses, totalPages, setTotalPages, getOneHouse, getHousesFiltered, getOneHouseImages, getUserHouses, addHouse, updateHouse, deleteHouse }
 
 }

@@ -8,6 +8,7 @@ export default function Filters({ apply_filters, delete_filters, filters, mapSho
 
     const clear_filters = () => {
         setValue("category", '');
+        setValue("location", '');
         setValue("min_price", '');
         setValue("max_price", '');
         setValue("rooms", '');
@@ -26,6 +27,9 @@ export default function Filters({ apply_filters, delete_filters, filters, mapSho
         filters = { page: 1, limit: 6 };
         if (data.category != '') {
             filters.category = data.category;
+        }
+        if (data.location != '') {
+            filters.location = data.location;
         }
         if (data.min_price != '') {
             filters.min_price = data.min_price;
@@ -53,6 +57,7 @@ export default function Filters({ apply_filters, delete_filters, filters, mapSho
 
     useEffect(() => {
         setValue('category', filters.category);
+        setValue('location', filters.location);
         setValue("min_price", filters.min_price);
         setValue("max_price", filters.max_price);
         setValue('rooms', filters.rooms);
@@ -76,6 +81,10 @@ export default function Filters({ apply_filters, delete_filters, filters, mapSho
                         <option value="rent">Rent</option>
                         <option value="vacational_rent">Vacational rent</option>
                     </select><br/>
+                </div>
+                <div className="location_box">
+                    <label htmlFor='location' className="etiqueta">Location:</label>
+                    <input type="text" className="location" id='location' name='location' placeholder='Barcelona' {...register("location")}/><br/>
                 </div>
                 <div className="price_box">
                     <label htmlFor='price' className="etiqueta">Price:</label>

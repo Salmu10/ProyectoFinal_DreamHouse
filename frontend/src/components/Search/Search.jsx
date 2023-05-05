@@ -11,11 +11,15 @@ export default function Search({ apply_filters}) {
         if (data.category != '') {
             filters.category = data.category;
         }
+        if (data.location != '') {
+            filters.location = data.location;
+        }
         apply_filters(filters);
     };
 
     useEffect(() => {
         setValue('category', filters.category);
+        setValue('location', filters.location);
     }, [filters]);
 
     return (
@@ -33,7 +37,7 @@ export default function Search({ apply_filters}) {
                 </div>
                 <div className="location_box">
                     <label htmlFor='location' className='etiqueta'>Location:</label>
-
+                    <input type="text" className="location" id='location' name='location' placeholder='Barcelona' {...register("location")}/>
                 </div>
                 <div className="buttons_box">
                     <input type="submit" className="filter_button" value="Filter"/>

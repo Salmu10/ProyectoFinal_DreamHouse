@@ -179,7 +179,7 @@ class HouseSerializer(serializers.ModelSerializer):
 
         #Filtro de Localidad
         if (location != ''):
-            house_filters['location__contains'] = location
+            house_filters['location__icontains'] = location
 
         #Filtro de Precio
         if (min_price == '' and max_price == ''):
@@ -233,6 +233,8 @@ class HouseSerializer(serializers.ModelSerializer):
         total_houses = House.objects.filter(pk__in=house_list, category__in=categories, **house_filters)
 
         houses_res = {'houses': houses, 'total_houses': len(total_houses)}
+
+        print(houses_res)
 
         return houses_res
     

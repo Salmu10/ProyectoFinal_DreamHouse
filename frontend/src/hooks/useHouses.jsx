@@ -45,7 +45,8 @@ export function useHouses() {
             .then(({data, status}) => {
                 if (status == 200) {
                     const total_houses = data.total_houses;
-                    const pages = Math.ceil(total_houses / 3);
+                    // const pages = Math.ceil(total_houses / 3);
+                    const pages = Math.ceil(total_houses / filters.limit);
                     setHouses(data.houses);
                     setTotalPages(pages);
                 }

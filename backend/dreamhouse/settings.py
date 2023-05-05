@@ -11,7 +11,7 @@ env.read_env(os.path.join(BASE_DIR+'/dreamhouse', '.env'))
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'thisismygoodside'
+SECRET_KEY = env('SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -86,7 +86,7 @@ DATABASES = {
         'NAME': env('DB_MYSQL'),
         'USER': env('USER'),
         'PASSWORD': env('PASSWORD'),
-        'HOST': '127.0.0.1',
+        'HOST': env('DB_HOST'),
         'PORT': '3306',
     }
 }

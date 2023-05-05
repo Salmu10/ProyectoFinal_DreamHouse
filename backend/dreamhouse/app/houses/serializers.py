@@ -144,10 +144,10 @@ class HouseSerializer(serializers.ModelSerializer):
         services_filters = {}
         house_filters = {}
         category_filters = {}
-        # category_id = 0
 
         map = filters_context.get('map', False)
         category = filters_context.get('category', '')
+        location = filters_context.get('location', '')
         min_price = filters_context.get('min_price', '')
         max_price = filters_context.get('max_price', '')
         rooms = filters_context.get('rooms', '')
@@ -158,7 +158,7 @@ class HouseSerializer(serializers.ModelSerializer):
 
         page = int(filters_context['page'])
         limit = int(filters_context['limit'])
-        offset = (page - 1) * 4
+        offset = (page - 1) * limit
 
         #Filtro de Categorias
         if (category == ''):
@@ -176,6 +176,10 @@ class HouseSerializer(serializers.ModelSerializer):
 
         for category in categories_id:
             categories.append(category.id)
+
+        #Filtro de Localidad
+        if (location != ''):
+            house_filters['location__contains'] = location
 
         #Filtro de Precio
         if (min_price == '' and max_price == ''):
@@ -224,7 +228,7 @@ class HouseSerializer(serializers.ModelSerializer):
         if (map == 'true'):
             houses = House.objects.filter(pk__in=house_list, category__in=categories, **house_filters)
         else: 
-            houses = House.objects.filter(pk__in=house_list, category__in=categories, **house_filters)[offset:offset+4]
+            houses = House.objects.filter(pk__in=house_list, category__in=categories, **house_filters)[offset:offset+limit]
 
         total_houses = House.objects.filter(pk__in=house_list, category__in=categories, **house_filters)
 

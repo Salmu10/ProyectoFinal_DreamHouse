@@ -20,7 +20,7 @@ class CategoryView(viewsets.GenericViewSet):
         if self.request.method == 'GET':
             self.permission_classes = [AllowAny]
         else:
-            self.permission_classes = [IsAuthenticated, IsAdmin]
+            self.permission_classes = [IsAdmin]
         return super(CategoryView, self).get_permissions()
 
     def getCategories(self, request):
@@ -85,7 +85,6 @@ class HouseView(viewsets.GenericViewSet):
         serializer = HouseSerializer(houses, many=True)
         print(houses)
         return Response(serializer.data)
-        # return Response('Hola')
     
     def post(self, request):
         username = request.user
@@ -99,23 +98,12 @@ class HouseView(viewsets.GenericViewSet):
     
     def put(self, request, id):
         data = request.POST
-        # print(id)
         main_image = request.FILES.get('main_image')
         images_list = request.FILES.getlist('imagenes')
         serializer = HouseSerializer.update(house_id=id, data_context=data, main_image=main_image, images_context=images_list)
         house = House.objects.get(pk=serializer)
         house_serializer = HouseSerializer(house)
         return Response(house_serializer.data)
-        # return Response('Hola')
-        # house = House.objects.get(pk=id)
-        # data = request.data.get('house')
-        # house_services = request.data.get('house_services')
-        # serializer = HouseSerializer(instance=house, data=data, partial=True)
-        # HouseServicesSerializer(instance=house, data=house_services, partial=True)
-        # if (serializer.is_valid(raise_exception=True)):
-        #     serializer.save()
-        # return Response(serializer.data)
-
     
     def putImages(self, request, id):
         print(request.FILES)

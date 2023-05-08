@@ -127,12 +127,6 @@ class HouseSerializer(serializers.ModelSerializer):
                 image=main_image
             )
 
-        # if images_context:
-        #     for image in images_context:
-        #         HouseImages.objects.delete(house_id=house)
-        #         # HouseImages.objects.filter(house_id=id).update(image=image)
-        #         HouseImages.objects.create(image=image, house_id=house)
-
         house_res = House.objects.get(pk=house_id)
 
         return house_res.id
@@ -233,9 +227,7 @@ class HouseSerializer(serializers.ModelSerializer):
         total_houses = House.objects.filter(pk__in=house_list, category__in=categories, **house_filters)
 
         houses_res = {'houses': houses, 'total_houses': len(total_houses)}
-
-        print(houses_res)
-
+        
         return houses_res
     
 class HouseServicesSerializer(serializers.ModelSerializer):

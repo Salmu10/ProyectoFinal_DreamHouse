@@ -16,21 +16,21 @@ services:
       - ./sql/dump.sql:/docker-entrypoint-initdb.d/datadump.sql
     networks:
       - app
-  # phpmyadmin:
-  #   image: phpmyadmin/phpmyadmin:latest
-  #   container_name: phpmyadmin
-  #   ports:
-  #     - 8080:80
-  #   links:
-  #     - db
-  #   restart: always
-  #   environment:
-  #     PMA_HOST: db
-  #     PMA_PORT: 3306
-  #     PMA_ARBITRARY: 1
-  #     MYSQL_ROOT_PASSWORD: admin
-  #   networks:
-  #     - app
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    ports:
+      - 8080:80
+    links:
+      - db
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+      MYSQL_ROOT_PASSWORD: admin
+    networks:
+      - app
   backend:
     build: ./backend
     container_name: dreamhouse_backend

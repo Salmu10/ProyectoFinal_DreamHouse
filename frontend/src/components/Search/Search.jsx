@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import './Search.scss';
+import { FaSearch } from "react-icons/fa";
 
 export default function Search({ apply_filters}) {
 
@@ -24,12 +26,11 @@ export default function Search({ apply_filters}) {
 
     return (
         <div className="search">
-            FILTERS
-            <form className="forms_form" id="login_form" onSubmit={handleSubmit(filter)}>
+            <form className="search_form" id="search_form" onSubmit={handleSubmit(filter)}>
                 <div className="category_box">
                     <label htmlFor='category' className='etiqueta'>Category:</label>
                     <select id='category' name="category" {...register('category')} defaultValue="">
-                        <option value="" disabled>Select the type of action</option>
+                        <option value="" disabled>Type of action</option>
                         <option value="for_sale">For sale</option>
                         <option value="rent">Rent</option>
                         <option value="vacational_rent">Vacational rent</option>
@@ -39,10 +40,7 @@ export default function Search({ apply_filters}) {
                     <label htmlFor='location' className='etiqueta'>Location:</label>
                     <input type="text" className="location" id='location' name='location' placeholder='Barcelona' {...register("location")}/>
                 </div>
-                <div className="buttons_box">
-                    <input type="submit" className="filter_button" value="Filter"/>
-                    {/* <button type="button" className="delete_button" onClick={() => clear_filters()}>Clear</button> */}
-                </div>
+                    <button type="submit" className="search_button">Search<FaSearch className='icon'/></button>
             </form>
         </div>
     );

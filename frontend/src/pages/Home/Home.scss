@@ -10,6 +10,11 @@
             color: #333;
         }
     }
+    .map_title {
+        text-transform: uppercase;
+        font-weight: bold;
+        color: #333;
+    }
     .maps {
         display: block;
         margin: auto;
@@ -51,6 +56,11 @@
                 font-size: 25px;
             }
         }
+        .map_title {
+            font-size: 22px;
+            padding: 20px;
+            padding-top: 40px;
+        }
         .maps {
             width: 90%;
             .maps_content {
@@ -81,6 +91,11 @@
                 font-size: 30px;
             }
         }
+        .map_title {
+            font-size: 27px;
+            padding: 20px;
+            padding-top: 40px;
+        }
         .maps {
             width: 80%;
             .maps_content {
@@ -110,6 +125,11 @@
             h1 {
                 font-size: 35px;
             }
+        }
+        .map_title {
+            font-size: 32px;
+            padding: 20px;
+            padding-top: 40px;
         }
         .maps {
             width: 70%;

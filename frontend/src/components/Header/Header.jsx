@@ -2,12 +2,10 @@ import React, { useContext } from "react";
 import './Header.scss';
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
-// import { useNotifications } from "../../hooks/useNotifications";
 
 export default function Header () {
     const navigate = useNavigate();
     const { user, isAuth, isAdmin, logout } = useContext(AuthContext);
-    // const { notificationsNumber } = useNotifications();
 
     const redirects = {
         home: () => navigate('/home'),
@@ -17,8 +15,6 @@ export default function Header () {
         register: () => navigate('/register'),
         profile: (id) => navigate('/profile/' + id),
     }
-
-    // const badge = notificationsNumber  == 0 ? true : false;
 
     const isUser = isAuth ? <li className="link nav-link" onClick={() => logout()}>Log out</li>
     : <li className="link nav-link" onClick={() => redirects.register()}>Sign up</li>;

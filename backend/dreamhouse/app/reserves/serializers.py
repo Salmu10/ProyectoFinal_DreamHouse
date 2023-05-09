@@ -26,12 +26,6 @@ class ReserveSerializer(serializers.ModelSerializer):
         end_date = context['end_date']
         total_price = context['total_price']
 
-        print(username)
-        print(house_id)
-        print(initial_date)
-        print(end_date)
-        print(total_price)
-
         user = User.objects.get(username=username)
 
         if user is None:
@@ -46,11 +40,12 @@ class ReserveSerializer(serializers.ModelSerializer):
         reserve.save()
 
         return reserve
-        # return 'Hola'
 
     def getHouseReserves(house_id):
         reserves = Reserve.objects.filter(house_id=house_id)
+
         books = [{'from': reserve.initial_date, 'to': reserve.end_date} for reserve in reserves]
+        
         return books
 
     def delete(context):
@@ -60,9 +55,6 @@ class ReserveSerializer(serializers.ModelSerializer):
 
         if reserve is None:
             raise serializers.ValidationError('Reserve is not find')
-
-        if reserve.end_slot_id is None:
-            raise serializers.ValidationError('Reserve is not over')
 
         reserve.delete()
         return True

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import secrets from '../../../secrets';
 import { useHouses } from "../../../hooks/useHouses";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function HouseCard ({ house }) {
     const navigate = useNavigate();
@@ -34,8 +33,6 @@ export default function HouseCard ({ house }) {
                 <div className='card_services'>
                     <p>{house.address}</p>
                     <p>Available for: {category}</p>
-                    {/* <p><FontAwesomeIcon icon="fa-solid fa-bed"/> {oneHouseServices.rooms}</p>
-                    <p><FontAwesomeIcon icon="fa-solid fa-shower"/> {oneHouseServices.bathrooms}</p> */}
                 </div>
             </div>
         </div>

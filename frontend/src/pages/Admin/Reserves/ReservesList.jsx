@@ -10,8 +10,6 @@ export default function ReservesList({ }) {
         getReserves();
     }, [])
 
-    console.log(reserves);
-
     return (
         <ReservesListAdmin reserves={reserves} deleteReserve={deleteReserve}/>
     )

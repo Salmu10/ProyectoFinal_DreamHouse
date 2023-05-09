@@ -20,6 +20,16 @@
             color: white;
             text-transform: uppercase;
         }
+        input {
+            border: 1px solid #333;
+            background-color: white;
+            &::placeholder {
+                font-size: .85rem;
+                letter-spacing: .1rem;
+                color: #333;
+                padding-left: 4px;
+            }
+        }
         .search_button {
             display: flex;
             flex-direction: row;

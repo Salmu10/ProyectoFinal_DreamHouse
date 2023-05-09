@@ -50,18 +50,18 @@ const SignInForm = ({form_type, sendData, errorMSG}) => {
                         <form className="forms_form" id="login_form" onSubmit={handleSubmit(send_data)}>
                             <fieldset className="forms_fieldset">
                                 <div className="forms_field">
-                                    <input type="name" placeholder="Username" className="forms_field-input" {...register('username')} autoFocus/>
+                                    <input id='sign_inputs' type="name" placeholder="Username" className="forms_field-input" {...register('username')} autoFocus/>
                                     <span className="error">{errors.username?.message}</span>
                                 </div>
                                 <div className="forms_field">
-                                    <input type="password" placeholder="Password" className="forms_field-input" {...register('password')}/>
+                                    <input id='sign_inputs' type="password" placeholder="Password" className="forms_field-input" {...register('password')}/>
                                     <span className="error">{errors.password?.message}</span>
                                 </div>
                                 <br/>
                                 <div className="error">{errorMSG}</div>
                             </fieldset>
                             <div className="forms_buttons">
-                                <input type="submit" value="Sign In" className="forms_buttons-action"/>
+                                <input id='sign_inputs' type="submit" value="Sign In" className="forms_buttons-action"/>
                             </div>
                         </form>
                     </div>

@@ -7,6 +7,15 @@ export function useReserve() {
     const [houseReserves, setHouseReserves] = useState([]);
     const [userReserves, setUserReserves] = useState([]);
 
+    const getReserves = useCallback(() => {
+        ReserveService.getAllReserves()
+            .then(({data}) => {
+                setReserves(data);
+                // console.log(data);
+            })
+            .catch(e => console.error(e));
+    }, [reserves]);
+
     const getHouseReserves = useCallback((house_id) => {
         ReserveService.getHouseReserves(house_id)
             .then(({data}) => {
@@ -52,6 +61,17 @@ export function useReserve() {
             .catch(e => console.error(e));
     }, []);
 
-    return { reserves, setReserves, houseReserves, setHouseReserves, userReserves, setUserReserves, getHouseReserves, getUserReserves, makeReserve, sendEmail }
+    const deleteReserve = (id) => {
+        ReserveService.deleteReserve(id)
+            .then(({ data, status }) => {
+                if (status === 200) {
+                    setReserves(reserves.filter(reserve => reserve.id !== id));
+                    toast.success(data.data);
+                }
+            })
+            .catch(e => console.error(e));
+    }
+
+    return { reserves, setReserves, houseReserves, setHouseReserves, userReserves, setUserReserves, getReserves, getHouseReserves, getUserReserves, makeReserve, sendEmail, deleteReserve }
 
 }

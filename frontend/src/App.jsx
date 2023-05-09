@@ -32,6 +32,8 @@ const HousesList = React.lazy(() => import('./pages/Admin/House/HousesList'));
 const HousesAdd = React.lazy(() => import('./pages/Admin/House/HousesAdd'));
 const HousesUpdate = React.lazy(() => import('./pages/Admin/House/HousesUpdate'));
 const HouseDetails = React.lazy(() => import('./pages/Client/HouseDetails'));
+const UsersList = React.lazy(() => import('./pages/Admin/User/UsersList'));
+const ReservesList = React.lazy(() => import('./pages/Admin/Reserves/ReservesList'));
 
 const Profile = React.lazy(() => import('./pages/Client/Profile'));
 const HousesClientAdd = React.lazy(() => import('./pages/Client/HousesAddClient'));
@@ -63,6 +65,8 @@ function App() {
                       <Route path="/dashboard/houses" element={<HousesList/>}/>
                       <Route path="/dashboard/houses/add" element={<HousesAdd/>}/>
                       <Route path="/dashboard/houses/update/:id" element={<HousesUpdate/>}/>
+                      <Route path="/dashboard/users" element={<UsersList/>}/>
+                      <Route path="/dashboard/reserves" element={<ReservesList/>}/>
                     </Route>
 
                     <Route element={<AuthGuard/>}>

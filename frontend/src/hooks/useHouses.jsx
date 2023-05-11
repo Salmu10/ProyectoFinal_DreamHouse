@@ -66,7 +66,7 @@ export function useHouses() {
     const getUserHouses = useCallback((user_id) => {
         HouseService.getUserHouses(user_id)
             .then(({data}) => {
-                console.log(data);
+                // console.log(data);
                 setUserHouses(data);
             })
             .catch(e => console.error(e));

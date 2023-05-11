@@ -1,4 +1,4 @@
-import './HousesForm.scss';
+import './HouseForm.scss';
 import React, { useEffect, useState } from "react";
 
 import { useForm } from 'react-hook-form';
@@ -95,7 +95,7 @@ houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '
     const button_type = form_type == 'create' ? 'Create' : 'Update';
     const read_only = form_type == 'update' ? true : false;
 
-    // console.log(houseImages);
+    console.log(button_type);
 
     return (
         <form className='house_form' onSubmit={handleSubmit(send_data)}>

@@ -3,7 +3,7 @@ version: '3.7'
 services:
   db:
     image: mysql:latest
-    container_name: db
+    container_name: dreamhouse_db
     hostname: db
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -15,10 +15,10 @@ services:
       - dbdata:/var/lib/mysql
       - ./sql/dump.sql:/docker-entrypoint-initdb.d/datadump.sql
     networks:
-      - app
+      - dreamhouse_net
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
-    container_name: phpmyadmin
+    container_name: dreamhouse_phpmyadmin
     ports:
       - 8080:80
     links:
@@ -30,7 +30,7 @@ services:
       PMA_ARBITRARY: 1
       MYSQL_ROOT_PASSWORD: admin
     networks:
-      - app
+      - dreamhouse_net
   backend:
     build: ./backend
     container_name: dreamhouse_backend
@@ -40,7 +40,7 @@ services:
     depends_on:
       - db
     networks:
-      - app
+      - dreamhouse_net
   frontend:
     build: ./frontend
     container_name: dreamhouse_frontend
@@ -50,8 +50,8 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - app
+      - dreamhouse_net
 volumes:
   dbdata:
 networks:
-  app:
+  dreamhouse_net:

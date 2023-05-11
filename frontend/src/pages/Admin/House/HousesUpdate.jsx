@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import HousesForm from "../../../components/Client/Houses/HousesAddForm";
+import HouseForm from "../../../components/Admin/House/HouseForm";
 import { useHouses } from "../../../hooks/useHouses";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -24,7 +24,7 @@ export default function HousesUpdate({ }) {
             <div className="title">
                 <h1>Update House</h1>
             </div>
-            <HousesForm house={oneHouse} houseServices={oneHouseServices} houseImages={oneHouseImages} form_type={form_type} sendData={(formData) => updateHouse(id, formData)}/>
+            <HouseForm house={oneHouse} houseServices={oneHouseServices} houseImages={oneHouseImages} form_type={form_type} sendData={(formData) => updateHouse(id, formData)}/>
         </div>
     )
 }

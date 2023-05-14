@@ -11,7 +11,6 @@ export function useReserve() {
         ReserveService.getAllReserves()
             .then(({data}) => {
                 setReserves(data);
-                // console.log(data);
             })
             .catch(e => console.error(e));
     }, [reserves]);
@@ -20,7 +19,6 @@ export function useReserve() {
         ReserveService.getHouseReserves(house_id)
             .then(({data}) => {
                 setHouseReserves(data);
-                // console.log(data);
             })
             .catch(e => console.error(e));
     }, [houseReserves]);
@@ -45,7 +43,6 @@ export function useReserve() {
             .then(({data}) => {
                 setReserves(data);
                 toast.success("The reserve has been made successfully");
-                console.log(data);
             })
             .catch(e => console.error(e));
     }, []);
@@ -53,7 +50,6 @@ export function useReserve() {
     const sendEmail = useCallback((data) => {
         ReserveService.sendEmail(data)
             .then(({data, status}) => {
-                console.log(data);
                 if (status === 200) {
                     toast.success(data.data);
                 }

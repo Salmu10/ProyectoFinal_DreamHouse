@@ -15,7 +15,6 @@ export function useHouses() {
     const getAllHouses = useCallback(() => {
         HouseService.getAllHouses()
             .then(({data}) => {
-                // console.log(data);
                 setHouses(data);
             })
             .catch(e => console.error(e));
@@ -32,7 +31,7 @@ export function useHouses() {
                     .catch(e => console.error(e));
                 HouseService.getOneHouseImages(data.id)
                     .then(({data}) => {
-                        // console.log(data);
+    
                         setOneHouseImages(data);
                     })
                     .catch(e => console.error(e));
@@ -45,7 +44,6 @@ export function useHouses() {
             .then(({data, status}) => {
                 if (status == 200) {
                     const total_houses = data.total_houses;
-                    // const pages = Math.ceil(total_houses / 3);
                     const pages = Math.ceil(total_houses / filters.limit);
                     setHouses(data.houses);
                     setTotalPages(pages);
@@ -57,7 +55,6 @@ export function useHouses() {
     const getOneHouseImages = useCallback((id) => {
         HouseService.getOneHouseImages(id)
             .then(({data}) => {
-                // console.log(data);
                 setOneHouseImages(data);
             })
             .catch(e => console.error(e));
@@ -66,7 +63,6 @@ export function useHouses() {
     const getUserHouses = useCallback((user_id) => {
         HouseService.getUserHouses(user_id)
             .then(({data}) => {
-                // console.log(data);
                 setUserHouses(data);
             })
             .catch(e => console.error(e));
@@ -75,7 +71,6 @@ export function useHouses() {
     const addHouse = useCallback((formData) => {
         HouseService.createHouse(formData)
             .then(({ data, status }) => {
-                console.log(data);
                 if (status === 200) {
                     setHouses([...houses, data]);
                     toast.success('House created successfully');

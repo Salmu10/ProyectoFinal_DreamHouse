@@ -21,7 +21,7 @@ class ReserveView(viewsets.GenericViewSet):
         if self.request.method == 'GET':
             self.permission_classes = [AllowAny]
         else:
-            self.permission_classes = [IsAuthenticated, IsAdmin]
+            self.permission_classes = [IsAuthenticated]
         return super(ReserveView, self).get_permissions()
 
     def getHouseReserves(self, request, house_id):
@@ -42,7 +42,8 @@ class ReserveView(viewsets.GenericViewSet):
     def sendEmail(self, request):
         mail = request.data.get('mail')
         owner = User.objects.get(pk=mail['house_owner'])
-        send_email(mail['subject'], mail['desc'], mail['user'], "salmu1997@gmail.com")
+        print(mail)
+        send_email(mail['subject'], mail['desc'], mail['user'], "ubedasalmu@gmail.com")
         return Response({'data': 'Email sended successfully'})
     
     def deleteReserve(self, request, id):

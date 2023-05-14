@@ -9,7 +9,6 @@ export function HouseContextProvider({ children }) {
     useEffect(function () {
         HouseService.getAllHouses()
             .then(({data}) => {
-                // console.log(data);
                 setHouses(data);
             })
             .catch(e => console.error(e));

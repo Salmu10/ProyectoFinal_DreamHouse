@@ -25,7 +25,6 @@ export function AuthContextProvider({ children }) {
                     }
                 })
                 .catch(({ error }) => {
-                    console.log('hola refresh');
                     if (JwtService.getRefreshToken()) {
                         refresh_token();
                     } else {

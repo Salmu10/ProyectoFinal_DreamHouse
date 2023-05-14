@@ -26,7 +26,6 @@ export default function ContactModal({ house }) {
         } else {
             data.house_owner = house.user_id;
             data.user = user.email;
-            console.log(user.email);
             sendEmail(data);
         }
     }

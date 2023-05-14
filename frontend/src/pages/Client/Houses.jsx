@@ -13,7 +13,7 @@ export default function Houses() {
     const [show, setShow] = useState(null);
     const [mapView, setMapView] = useState(false);
 
-    let filters = { page : 1, limit : 6};
+    let filters = { page : 1, limit : 4};
 
     let page = 1;
     let mapview = false;

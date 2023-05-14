@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import JwtService from '../services/JwtService';
 import AuthService from '../services/AuthService';
-import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -13,11 +12,8 @@ export function AuthContextProvider({ children }) {
     const [token, setToken] = useState(JwtService.getToken ? JwtService.getToken : flase);
     const [isAuth, setIsAuth] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
-    // const { useLogout } = useAuth();
 
     useEffect(() => {
-        // JwtService.destroyToken();
-        // JwtService.destroyRefreshToken();
         if (token) {
             AuthService.getUser()
                 .then(({ data, status }) => {

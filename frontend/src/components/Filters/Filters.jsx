@@ -16,7 +16,7 @@ export default function Filters({ apply_filters, delete_filters, filters, mapSho
         setValue("wifi", '');
         setValue("pool", '');
         setValue("parking", '');
-        filters = { page: 1, limit: 6 };
+        filters = { page: 1, limit: 4 };
         if (mapShow == true) {
             filters.map = true;
         }
@@ -24,7 +24,7 @@ export default function Filters({ apply_filters, delete_filters, filters, mapSho
     }
 
     const filter = data => {
-        filters = { page: 1, limit: 6 };
+        filters = { page: 1, limit: 4 };
         if (data.category != '') {
             filters.category = data.category;
         }

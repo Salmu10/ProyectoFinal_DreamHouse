@@ -1,9 +1,6 @@
 import axios from 'axios';
 import secrets from '../secrets';
 import JwtService from './JwtService';
-// import { useAuth } from '../hooks/useAuth';
-
-// const { refreshToken } = useAuth();
 
 const Axios = () => {
     let api = null;

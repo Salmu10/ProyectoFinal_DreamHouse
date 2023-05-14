@@ -7,7 +7,7 @@ export default function Search({ apply_filters}) {
 
     const {register, handleSubmit, setValue, formState: {errors} } = useForm();
 
-    const filters = { page: 1, limit: 6 };
+    const filters = { page: 1, limit: 4 };
 
     const filter = data => {
         if (data.category != '') {

@@ -19,7 +19,7 @@
     }
     .error {
         color: red;
-        font-style: italic;
+        font-family: 'Poppins', sans-serif;
     }
     .error_server {
         color: red;
@@ -33,13 +33,13 @@
         .profile_image {
             .user_image {
                 overflow: hidden;
-                border: 4px solid #ff385c;
+                border: 4px solid #aa2840;
                 box-shadow: 0 2px 2px rgba(0,0,0, 0.3);
             }
             input {
                 display: block;
                 margin: auto;
-                border: 1px solid #ff385c;
+                border: 1px solid #aa2840;
                 padding-left: 5px;
                 padding-right: 5px;
                 &:disabled {
@@ -57,7 +57,7 @@
                     text-transform: uppercase;
                 }
                 input {
-                    border: 1px solid #008f88;
+                    border: 1px solid #aa2840;
                     &:disabled {
                         border: none;
                     }
@@ -78,7 +78,7 @@
                 }
                 textarea {
                     display: inline-block;
-                    border: 1px solid #008f88;
+                    border: 1px solid #aa2840;
                     padding-left: 5px;
                     padding-right: 5px;
                     background-color: transparent;
@@ -92,17 +92,15 @@
         }
         .buttons_box {
             display: block;
-            .cancel {
+            button {
                 text-transform: uppercase;
                 font-weight: bold;
-            }
-            .edit {
-                text-transform: uppercase;
-                font-weight: bold;
-            }
-            .confirm {
-                text-transform: uppercase;
-                font-weight: bold;
+                background-color: #ff385c;
+                border: 1px solid #aa2840;
+                &:hover {
+                    background-color: #aa2840;
+                    border: 1px solid #ff385c;
+                }
             }
         }
     }
@@ -138,6 +136,12 @@
         button {
             text-transform: uppercase;
             font-weight: bold;
+            background-color: #ff385c;
+            border: 1px solid #aa2840;
+            &:hover {
+                background-color: #aa2840;
+                border: 1px solid #ff385c;
+            }
         }
     }      
 }

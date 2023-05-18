@@ -96,6 +96,19 @@
             margin: auto;
             margin-top: 4%;
         }
+        .page-item {
+            color: #aa2840;
+            .page-link {
+                color: inherit;
+            }
+        }
+        .page-item-active {
+            background-color: #aa2840;
+            .page-link {
+                border: 1px solid #ff627f;
+                background-color: inherit;
+            }
+        }
     }
     
 }

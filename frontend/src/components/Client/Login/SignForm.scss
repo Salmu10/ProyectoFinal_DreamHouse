@@ -116,7 +116,7 @@ input {
     font-weight: $ff-medium;
     line-height: 1em;
     text-transform: uppercase;
-    color: $red;
+    color: #aa2840;
     letter-spacing: .1rem;
     }
 
@@ -159,7 +159,7 @@ input {
         }
 
         &-action {
-            background-color: $red;
+            background-color: #aa2840;
             border-radius: $bdrds;
             padding: 10px 35px;
             font-size: 1rem;
@@ -171,7 +171,7 @@ input {
             transition: background-color .2s ease-in-out;
             margin-top: 5%;
             &:hover {
-                background-color: darken($red, 10%);
+                background-color: darken(#aa2840, 10%);
             }
         }
     }

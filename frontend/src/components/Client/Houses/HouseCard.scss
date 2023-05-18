@@ -7,6 +7,11 @@
   margin: auto;
   margin-top: 20px;
   gap: 50px;
+  .no_houses {
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #aa2840;
+  }
   .house_card {
     max-width: 350px;
     background-color: #FFF;

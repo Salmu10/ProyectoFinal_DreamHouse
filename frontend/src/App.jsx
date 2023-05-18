@@ -49,7 +49,7 @@ function App() {
                 <Header/>
                 <ToastContainer 
                   position="top-right" autoClose={2500} hideProgressBar={false} newestOnTop
-                  closeOnClick rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover theme="dark"
+                  closeOnClick rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover theme="light"
                 />
                   <Routes>
                     <Route path="/" element={<Home/>} />

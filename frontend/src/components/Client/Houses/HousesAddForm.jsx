@@ -16,9 +16,8 @@ houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '
     const validators = Yup.object().shape({
         country: Yup.string().required('*Country is required').min(3).max(50),
         location: Yup.string().required('*Location is required').min(3).max(50),
-        // image: Yup.string().required('*Image is required').min(3).max(100),
         address: Yup.string().required('*Address is required').min(3).max(50),
-        price: Yup.number().required('*Slots number must be between 5 and 20').min(0).max(2000000000),
+        price: Yup.number().required('*Price must be between 0 and 2000000000').min(0).max(2000000000),
         latitude: Yup.number().required('*Latitude is required').min(-180).max(180),
         longitude: Yup.number().required('*Longitude is required').min(-180).max(180),
         category: Yup.string().required('*Category is required'),
@@ -105,16 +104,6 @@ houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '
                         <input type="text" id="location" {...register('location')}/><br/>
                         <span className="error">{errors.location?.message}</span>
                     </div>
-                    <div className='image_box'>
-                        <label htmlFor='image' className='etiqueta'>Image:</label>
-                        <input id='image' name="image" type="file" {...register('image')} onChange={(e) => sendMainImage(e.target.files)}/><br/>
-                        <span className="error">{errors.image?.message}</span>
-                    </div>
-                    <div className='price_box'>
-                        <label htmlFor="price" className='etiqueta'>Price:</label>
-                        <input type="number" id="price" {...register('price')}/><br/>
-                        <span className="error">{errors.price?.message}</span>
-                    </div>
                     <div className='address_box'>
                         <label htmlFor="address" className='etiqueta'>Address:</label>
                         <input type="text" id="address" {...register('address')}/><br/>
@@ -130,6 +119,11 @@ houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '
                         <input id='longitude' name="longitude" type="text" {...register('longitude')}/><br/>
                         <span className="error">{errors.longitude?.message}</span>
                     </div>
+                    <div className='image_box'>
+                        <label htmlFor='image' className='etiqueta'>Principal image:</label>
+                        <input id='image' name="image" type="file" {...register('image')} onChange={(e) => sendMainImage(e.target.files)}/><br/>
+                        <span className="error">{errors.image?.message}</span>
+                    </div>
                     <div className='category_box'>
                         <label htmlFor='category' className='etiqueta'>Category:</label>
                         <select id='category' name="category" {...register('category')} defaultValue="">
@@ -139,6 +133,11 @@ houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '
                             <option value="vacational_rent">Vacational rent</option>
                         </select><br/>
                         <span className="error">{errors.category?.message}</span>
+                    </div>
+                    <div className='price_box'>
+                        <label htmlFor="price" className='etiqueta'>Price:</label>
+                        <input type="number" id="price" {...register('price')}/><br/>
+                        <span className="error">{errors.price?.message}</span>
                     </div>
                 </div>
                 <div className="house_services">
@@ -170,7 +169,7 @@ houseServices= {id: '', rooms: '', bathrooms: '', pool: '', wifi: '', parking: '
                 </div>
                 <div className="house_images">
                     <div className='images_box'>
-                        <label htmlFor='images' className='etiqueta'>Image:</label>
+                        <label htmlFor='images' className='etiqueta'>House images:</label>
                         <input id='images' name="images" type="file" {...register('house_images')} multiple onChange={(e) => sendImages(e.target.files)}/><br/>
                     </div>
                 </div>

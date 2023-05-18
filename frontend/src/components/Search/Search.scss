@@ -20,11 +20,14 @@
             color: white;
             text-transform: uppercase;
         }
+        select {
+            font-size: 15px;
+        }
         input {
             border: 1px solid #333;
             background-color: white;
             &::placeholder {
-                font-size: .85rem;
+                font-size: 15px;
                 letter-spacing: .1rem;
                 color: #333;
                 padding-left: 4px;
@@ -34,15 +37,16 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: space-around;
+            justify-content: center;
             background-color: white;
             border-radius: 15px;
             border: none;
             font-weight: bold;
             text-transform: uppercase;
-            color: #ff385c;
+            color: #aa2840;
             .icon {
-                color: #ff385c;
+                color: #aa2840;
+                margin-left: 5px;
             }
         }
     }
@@ -100,17 +104,17 @@
             justify-content: space-around;
             height: 60px;
             label {
-                font-size: 18px;
+                font-size: 16px;
                 padding-right: 10px;
             }
             input {
                 width: 120px;
             }
             .search_button {
-                font-size: 16px;
-                width: 110px;
+                font-size: 14px;
+                width: 100px;
                 .icon {
-                    font-size: 16px;
+                    font-size: 14px;
                 }
             }
         }
@@ -139,7 +143,7 @@
                 padding-right: 10px;
             }
             input {
-                width: 120px;
+                width: 140px;
             }
             .search_button {
                 font-size: 18px;

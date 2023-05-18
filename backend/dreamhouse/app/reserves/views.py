@@ -10,7 +10,7 @@ import requests, os
 env = Env()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-env.read_env(os.path.join(BASE_DIR+'/dreamhouse', '.env'))
+env.read_env(os.path.join(BASE_DIR, '.env'))
 
 def send_email(subject, message, from_email, recipient):
     return requests.post(env('api_url'), auth=("api", env('api_key')), data={"from": from_email, "to": recipient, "subject": subject, "text": message})
@@ -42,8 +42,7 @@ class ReserveView(viewsets.GenericViewSet):
     def sendEmail(self, request):
         mail = request.data.get('mail')
         owner = User.objects.get(pk=mail['house_owner'])
-        print(mail)
-        send_email(mail['subject'], mail['desc'], mail['user'], "ubedasalmu@gmail.com")
+        send_email(mail['subject'], mail['desc'], mail['user'], "salmu1997@gmail.com")
         return Response({'data': 'Email sended successfully'})
     
     def deleteReserve(self, request, id):

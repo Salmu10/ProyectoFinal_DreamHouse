@@ -5,7 +5,7 @@ from environ import Env
 env = Env()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-env.read_env(os.path.join(BASE_DIR+'/dreamhouse', '.env'))
+env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/

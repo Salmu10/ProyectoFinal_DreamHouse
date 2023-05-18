@@ -30,14 +30,6 @@ const AuthService = {
         return api().put(`profile/${id}`, { 'user': user_data, 'profile': profile_data } );
     },
 
-    getUserScooter() {
-        return api().get('userScooter');
-    },
-
-    getUserStats(id) {
-        return api().get(`profile_stats/${id}`);
-    },
-
     deleteUser(uuid) {
         return api().delete(`user/${uuid}`);
     },

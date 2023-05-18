@@ -10,7 +10,7 @@ services:
       MYSQL_DATABASE: dreamhouse_db
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin
-      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
     volumes:
       - dbdata:/var/lib/mysql
       - ./sql/dump.sql:/docker-entrypoint-initdb.d/datadump.sql

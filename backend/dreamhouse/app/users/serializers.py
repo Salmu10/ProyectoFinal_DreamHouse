@@ -139,14 +139,12 @@ class ProfileSerializer(serializers.ModelSerializer):
 
         if newUsername != user.username: 
             username_exist = len(User.objects.filter(username=newUsername))
-            print(username_exist)
             if (username_exist > 0):
                 raise serializers.ValidationError('*Username already exists.')
             User.objects.filter(username=current_user).update(username = newUsername)
 
         if newEmail != user.email: 
             email_exist = len(User.objects.filter(email=newEmail))
-            print(email_exist)
             if (email_exist > 0):
                 raise serializers.ValidationError('*Email already exists.')
             User.objects.filter(username=current_user).update(email = newEmail)

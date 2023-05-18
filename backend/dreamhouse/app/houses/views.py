@@ -59,7 +59,7 @@ class HouseView(viewsets.GenericViewSet):
         if self.request.method == 'GET':
             self.permission_classes = [AllowAny]
         else:
-            self.permission_classes = [IsAuthenticated, IsAdmin]
+            self.permission_classes = [IsAuthenticated]
         return super(HouseView, self).get_permissions()
 
     def getHouses(self, request):
@@ -80,10 +80,8 @@ class HouseView(viewsets.GenericViewSet):
         return Response(context)
     
     def getUserHouses(self, request, user_id):
-        print(user_id)
         houses = House.objects.filter(user_id=user_id)
         serializer = HouseSerializer(houses, many=True)
-        print(houses)
         return Response(serializer.data)
     
     def post(self, request):
@@ -106,7 +104,6 @@ class HouseView(viewsets.GenericViewSet):
         return Response(house_serializer.data)
     
     def putImages(self, request, id):
-        print(request.FILES)
         if request.FILES:
             for image in request.FILES.getlist('imagenes'):
                 HouseImages.objects.filter(house_id=id).update(image=image)

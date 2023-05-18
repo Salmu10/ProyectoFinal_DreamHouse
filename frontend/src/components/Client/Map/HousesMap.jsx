@@ -4,7 +4,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import secrets from '../../../secrets';
 import { useNavigate } from "react-router-dom";
 
-export default function StationsMap({ houses = [], setShow }) {
+export default function HousesMap({ houses = [], setShow }) {
 
     const [markerIndex, setMarkerIndex] = useState(null);
     const navigate = useNavigate();
@@ -23,11 +23,11 @@ export default function StationsMap({ houses = [], setShow }) {
                 <GeolocateControl positionOptions={{ enableHighAccuracy: true }} trackUserLocation={true}/>
 
                 {houses.map((house, id) => {
-                    return <Marker key={id} latitude={house.latitude} longitude={house.longitude} color={"#ff385c"}/>
+                    return <Marker key={id} latitude={house.latitude} longitude={house.longitude} color={"#aa2840"}/>
                 })}
 
                 {houses.map((house, id) => (
-                    <Marker key={id} latitude={house.latitude} longitude={house.longitude} color={"#ff385c"}>
+                    <Marker key={id} latitude={house.latitude} longitude={house.longitude} color={"#aa2840"}>
                         <button className="marker_button" onClick={() => { setMarkerIndex(id); setShow(houses[id].id)}}>
                             <div style={{ backgroundColor: 'transparent', width: 25, height: 50, borderRadius: '50%' }}/>
                         </button>
@@ -43,7 +43,6 @@ export default function StationsMap({ houses = [], setShow }) {
                             </div>
                             <div className='popup_image'>
                                 <img src={`${secrets.URL_BACKEND}${houses[markerIndex].image}`}/>
-                                {/* <img src="/assets/estacion.jpeg" alt='img'/>  */}
                             </div>
                         </div>
                     </Popup>

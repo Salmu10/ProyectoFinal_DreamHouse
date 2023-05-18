@@ -68,6 +68,8 @@ export default function Houses() {
 
     const houses_view = mapView == false ? <HousesList houses={houses}/> : <HousesMap houses={houses} setShow={setShow}/>
 
+    const nohouses = houses.length == 0 ? true : false;
+
     return (
         <div className="houses_container">
             <div className="houses_components">
@@ -104,14 +106,14 @@ export default function Houses() {
                     </div>
                 </div>
             </div>
-            <div className="pagination" hidden={mapView}>
+            <div className="pagination" hidden={mapView || nohouses}>
                 <nav>
                     <ul className="pagination pg-blue">
                         <li className="page-item" onClick={() => change_page(filters.page-1)} hidden={filters.page == 1}>
                             <span className="page-link">Prev</span>
                         </li>  
                         {Array.from({ length: totalPages }, (_, index) => (
-                            <li key={index+1} className={filters.page == (index+1) ? 'page-item active' : 'page-item'} onClick={() => change_page(index+1)}>
+                            <li key={index+1} className={filters.page == (index+1) ? 'page-item-active active' : 'page-item'} onClick={() => change_page(index+1)}>
                                 <span className="page-link">{index+1}</span>
                             </li>
                         ))}

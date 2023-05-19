@@ -16,10 +16,10 @@ SECRET_KEY = env('SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost', '172.20.10.3', '192.168.0.26']
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost', '172.20.10.3', '192.168.0.26', '98.66.137.156']
 
 CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = ('http://localhost:3000', 'http://172.20.10.3:3000', 'http://192.168.0.26:3000')
+CORS_ORIGIN_WHITELIST = ('http://localhost:3000', 'http://172.20.10.3:3000', 'http://192.168.0.26:3000', 'http://98.66.137.156:3000')
 
 # MAILGUN
 
